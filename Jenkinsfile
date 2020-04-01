@@ -10,6 +10,7 @@ pipeline {
         }
         stage('deploy') {
             steps {
+                sh 'git add -A'
                 sh 'git commit -am "check in"'
                 sh 'git push origin master'
             }
