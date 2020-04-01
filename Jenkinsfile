@@ -9,7 +9,7 @@ pipeline {
             }
         }
         stage('deploy') {
-            sh 'git commit -am 'daily check in'
+            sh 'git commit -am "check in"
             sh 'git push origin master'
         }
      }
