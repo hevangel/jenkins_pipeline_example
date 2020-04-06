@@ -12,6 +12,10 @@ pipeline {
             steps {
                 sh 'git add -A'
                 sh 'git commit -am "check in"'
+            }
+        }
+        stage('push') {
+            steps {
                 sh 'git push origin master'
             }
         }
