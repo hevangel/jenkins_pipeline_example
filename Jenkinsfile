@@ -35,7 +35,7 @@ pipeline {
         }
         success {
             echo 'I succeeeded!'
-            emailext body: 'jenkins test', subject: 'jenkins test', to: 'hevangel@gmail.com'
+            // emailext body: 'jenkins test', subject: 'jenkins test', to: 'hevangel@gmail.com'
         }
         unstable {
             echo 'I am unstable :/'
