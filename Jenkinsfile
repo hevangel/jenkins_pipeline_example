@@ -19,5 +19,8 @@ pipeline {
                 sh 'git push origin HEAD:master'
             }
         }
+        stage('html') {
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+        }
      }
  }
