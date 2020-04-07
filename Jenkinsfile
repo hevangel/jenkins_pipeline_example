@@ -27,4 +27,23 @@ pipeline {
             }
         }
      }
+     post {
+        always {
+            echo 'One way or another, I have finished'
+            deleteDir() /* clean up our workspace */
+        }
+        success {
+            echo 'I succeeeded!'
+            emailext body: 'jenkins test', subject: 'jenkins test', to: 'hevangel@gmail.com'
+        }
+        unstable {
+            echo 'I am unstable :/'
+        }
+        failure {
+            echo 'I failed :('
+        }
+        changed {
+            echo 'Things were different before...'
+        }
+    }
  }
