@@ -6,10 +6,10 @@ pipeline {
                 echo 'build phase'
                 echo "workspace: ${env.WORKSPACE} on ${env.JENKINS_URL}"
                 sh 'python3 -m venv python_venv'
-                // withPythonEnv('${WORKSPACE}/python_venv') {
-                //    sh 'pip3 install -r requirements.txt'
-                //    sh 'python3 test.py'
-                //}
+                withPythonEnv("${WORKSPACE}/python_venv") {
+                    sh 'pip3 install -r requirements.txt'
+                    sh 'python3 test.py'
+                }
                 sh 'touch a.txt'
                 sh 'date >> a.txt'
             }
