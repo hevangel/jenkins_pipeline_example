@@ -4,11 +4,12 @@ pipeline {
         stage('build') {
             steps {
                 echo 'build phase'
+                echo 'workspace: ${WORKSPACE}'
                 sh 'python3 -m venv python_venv'
-                withPythonEnv('python_venv') {
-                    sh 'pip3 install -r requirements.txt'
-                    sh 'python3 test.py'
-                }
+                // withPythonEnv('${WORKSPACE}/python_venv') {
+                //    sh 'pip3 install -r requirements.txt'
+                //    sh 'python3 test.py'
+                //}
                 sh 'touch a.txt'
                 sh 'date >> a.txt'
             }
@@ -38,7 +39,7 @@ pipeline {
     post {
         always {
             echo 'One way or another, I have finished'
-            deleteDir() /* clean up our workspace */
+            // deleteDir() /* clean up our workspace */
         }
         success {
             echo 'I succeeeded!'
