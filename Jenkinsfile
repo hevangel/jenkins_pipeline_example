@@ -4,8 +4,8 @@ pipeline {
         stage('build') {
             steps {
                 echo 'build phase'
-                echo 'hello ${username}'
-                withPythonEnv('jenkins_github_example_venv') {
+                sh 'python3 -m venv python_venv'
+                withPythonEnv('python_venv') {
                     sh 'pip3 install -r requirements.txt'
                     sh 'python3 test.py'
                 }
