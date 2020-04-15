@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo 'build phase'
                 echo 'hello ${username}'
-                withPythonEnv('jenkins_github_example_venv') {}
+                withPythonEnv('jenkins_github_example_venv') {
                     sh 'pip3 install -r requirements.txt'
                     sh 'python3 test.py'
                 }
@@ -34,8 +34,8 @@ pipeline {
                 // sh 'git push origin HEAD:master'
             }
         }
-     }
-     post {
+    }
+    post {
         always {
             echo 'One way or another, I have finished'
             deleteDir() /* clean up our workspace */
