@@ -3,28 +3,35 @@ pipeline {
     stages {
         stage('build') {
             steps {
+                echo 'build phase'
+                echo 'hello ${username}'
+                withPythonEnv('jenkins_github_example_venv') {}
+                    sh 'pip3 install -r requirements.txt'
+                    sh 'python3 test.py'
+                }
                 sh 'touch a.txt'
-                sh 'python3 --version'
                 sh 'date >> a.txt'
+            }
+        }
+        stage('test') {
+            steps {
+                echo 'test phase'
+            }
+        }
+        stage('archive') {
+            steps {
+                echo 'archive phase'
+                junit allowEmptyResults: true, testResults: 'test_results.xml'
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+                archiveArtifacts 'a.txt'
             }
         }
         stage('deploy') {
             steps {
-                sh 'git add -A'
-                sh 'git commit -am "check in"'
-            }
-        }
-        stage('push') {
-            steps {
-                sh 'git push origin HEAD:master'
-            }
-        }
-        stage('html') {
-            steps {
-                sh 'touch output.xml'
-                junit allowEmptyResults: true, testResults: 'output.xml'
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
-                archiveArtifacts 'a.txt'
+                echo 'deploy phase'
+                //git 'git add -A'
+                //sh 'git commit -am "check in"'
+                // sh 'git push origin HEAD:master'
             }
         }
      }
