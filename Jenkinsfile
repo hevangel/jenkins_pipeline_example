@@ -30,7 +30,7 @@ pipeline {
         stage('deploy') {
             steps {
                 echo 'deploy phase'
-                git 'git add a.out'
+                sh 'git add -A'
                 sh 'git commit -am "check in"'
                 sshagent (['git-jenkins.hevangel.com']) {
                     sh 'git push origin HEAD:master'
