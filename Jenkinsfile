@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo 'build phase'
                 echo "workspace: ${env.WORKSPACE} on ${env.JENKINS_URL}"
-                sh 'python3 -m venv python_venv'
+                sh 'python3 -m venv --system-site-packages python_venv'
                 withPythonEnv("${WORKSPACE}/python_venv/") {
                     sh 'pip3 install -r requirements.txt'
                     sh 'python3 test.py'
