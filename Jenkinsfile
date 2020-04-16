@@ -29,7 +29,7 @@ pipeline {
         }
         stage('deploy') {
             steps {
-                echo 'deploy phase'
+                echo 'deploy phase ha ha'
                 sh 'git add -A'
                 sh 'git commit -am "check in"'
                 sshagent (['git-jenkins.hevangel.com']) {
