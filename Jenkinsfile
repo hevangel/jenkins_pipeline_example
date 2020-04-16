@@ -1,5 +1,11 @@
 pipeline {
-    agent any 
+    agent any
+    triggers {
+        cron('H 0 * * 1-5')
+    }
+    parameters {
+        booleanParam(name: 'PUSH', defaultValue: false, description: 'Push to github')
+    }
     stages {
         stage('build') {
             steps {
@@ -28,6 +34,7 @@ pipeline {
             }
         }
         stage('deploy') {
+            when {expression {return params.PUSH}}
             steps {
                 echo 'deploy phase ha ha'
                 sh 'git add -A'
@@ -55,6 +62,21 @@ pipeline {
         }
         changed {
             echo 'Things were different before...'
+        }
+        aborted {
+            echo 'I am aborted'
+        }
+        fixed {
+            echo 'I am fixed'
+        }
+        regression {
+            echo 'I am regression'
+        }
+        unsuccessful {
+            echo 'I am unsuccessful'
+        }
+        cleanup {
+            echo 'clean up at the end'
         }
     }
  }
