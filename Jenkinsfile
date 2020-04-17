@@ -37,12 +37,11 @@ pipeline {
                 sh 'echo "SSH private key is located at $SSH_CREDS"'
                 sh 'echo "SSH user is $SSH_CREDS_USR"'
                 sh 'echo "SSH passphrase is $SSH_CREDS_PSW"'
-                sh 'cat $SSH_CREDS'
             }
         }
         stage('deploy') {
             // when {expression {return params.PUSH}}
-            // when {not {triggeredBy 'SCMTrigger'}}
+            when {not {triggeredBy cause: 'GitHubPushCause'}}
             steps {
                 echo 'deploy phase'
                 echo "${currentBuild.buildCauses}"
