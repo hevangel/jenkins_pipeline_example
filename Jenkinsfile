@@ -42,14 +42,15 @@ pipeline {
         }
         stage('deploy') {
             // when {expression {return params.PUSH}}
-            when {not {triggeredBy 'SCMTrigger'}}
+            // when {not {triggeredBy 'SCMTrigger'}}
             steps {
                 echo 'deploy phase'
-                sh 'git add -A'
-                sh 'git commit -am "check in"'
-                sshagent (['git-jenkins.hevangel.com']) {
-                    sh 'git push origin HEAD:master'
-                }
+                echo "${currentBuild.buildCauses}"
+                //sh 'git add -A'
+                //sh 'git commit -am "check in"'
+                //sshagent (['git-jenkins.hevangel.com']) {
+                //    sh 'git push origin HEAD:master'
+                //}
             }
         }
     }
