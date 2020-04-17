@@ -3,9 +3,9 @@ pipeline {
     triggers {
         cron('H 0 * * 1-5')
     }
-    parameters {
-        booleanParam(name: 'PUSH', defaultValue: false, description: 'Push to github')
-    }
+    //parameters {
+    //    booleanParam(name: 'PUSH', defaultValue: false, description: 'Push to github')
+    //}
     stages {
         stage('build') {
             steps {
@@ -26,17 +26,25 @@ pipeline {
             }
         }
         stage('archive') {
+            environment {
+                SSH_CREDS = credentials('git-jenkins.hevangel.com')
+            }
             steps {
                 echo 'archive phase'
                 junit allowEmptyResults: true, testResults: 'test_results.xml'
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
                 archiveArtifacts 'a.txt'
+                sh 'echo "SSH private key is located at $SSH_CREDS"'
+                sh 'echo "SSH user is $SSH_CREDS_USR"'
+                sh 'echo "SSH passphrase is $SSH_CREDS_PSW"'
+                sh 'cat $SSH_CREDS'
             }
         }
         stage('deploy') {
-            when {expression {return params.PUSH}}
+            // when {expression {return params.PUSH}}
+            when {not {triggeredBy 'SCMTrigger'}}
             steps {
-                echo 'deploy phase ha ha'
+                echo 'deploy phase'
                 sh 'git add -A'
                 sh 'git commit -am "check in"'
                 sshagent (['git-jenkins.hevangel.com']) {
