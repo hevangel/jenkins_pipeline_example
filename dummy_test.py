@@ -21,7 +21,7 @@ def main():
         for j in range(args.testcases):
             tc = TestCase(classname=f"myclass{i}",
                           name=f"mytest{j}",
-                          elapsed_sec=random.randint(1000),
+                          elapsed_sec=random.randint(100, 1000),
                           stdout = "stdout output",
                           stderr = "stderr output")
             if random.randint(0, 100) < args.error_rate:
