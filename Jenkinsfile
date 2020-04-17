@@ -84,12 +84,11 @@ pipeline {
         }
         unsuccessful {
             echo 'I am unsuccessful'
-            emailext subject: 'Jenkins build error', to: 'hevangel@gmail.com',
-                    body: """
+            emailext subject: 'Jenkins build error', to: 'hevangel@gmail.com', body: """
                     Job: ${env.JOB_NAME}
                     Build: ${env.BUILD_NUMBER}
                     URL: ${env.BUILD_URL}
-                    """,
+                    """
         }
         cleanup {
             echo 'clean up at the end'
