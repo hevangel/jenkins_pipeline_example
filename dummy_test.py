@@ -36,7 +36,7 @@ def main():
     # pretty printing is on by default but can be disabled using prettyprint=False
     print(TestSuite.to_xml_string([ts]))
 
-    with open('test_result.xml', 'w') as f:
+    with open('test_results.xml', 'w') as f:
         TestSuite.to_file(f, [ts], prettyprint=True)
 
 if __name__ == "__main__":
