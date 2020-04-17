@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    // periodic trigger
     triggers {
         cron('H 0 * * 1-5')
     }
@@ -11,45 +12,47 @@ pipeline {
             steps {
                 echo 'build phase'
                 echo "workspace: ${env.WORKSPACE} on ${env.JENKINS_URL}"
+                // create python virtual environment
                 sh 'python3 -m venv --system-site-packages venv'
                 withPythonEnv("${WORKSPACE}/venv/") {
                     sh 'pip3 install -r requirements.txt'
-                    sh 'python3 test.py'
+                    sh 'python3 dummy_test.py'
                 }
                 sh 'touch a.txt'
                 sh 'date >> a.txt'
             }
         }
         stage('test') {
-            steps {
-                echo 'test phase'
-            }
-        }
-        stage('archive') {
+            // get credentials
             environment {
                 SSH_CREDS = credentials('git-jenkins.hevangel.com')
             }
             steps {
-                echo 'archive phase'
-                junit allowEmptyResults: true, testResults: 'test_results.xml'
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
-                archiveArtifacts 'a.txt'
+                echo 'test phase'
                 sh 'echo "SSH private key is located at $SSH_CREDS"'
                 sh 'echo "SSH user is $SSH_CREDS_USR"'
                 sh 'echo "SSH passphrase is $SSH_CREDS_PSW"'
             }
         }
+        stage('archive') {
+
+            steps {
+                echo 'archive phase'
+                junit allowEmptyResults: true, testResults: 'test_results.xml'
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+                archiveArtifacts 'a.txt'
+            }
+        }
         stage('deploy') {
-            // when {expression {return params.PUSH}}
+            // skip deploy if the build is triggered by github push webhook
             when {not {triggeredBy cause: 'GitHubPushCause'}}
             steps {
                 echo 'deploy phase'
-                echo "${currentBuild.buildCauses}"
-                //sh 'git add -A'
-                //sh 'git commit -am "check in"'
-                //sshagent (['git-jenkins.hevangel.com']) {
-                //    sh 'git push origin HEAD:master'
-                //}
+                sh 'git add -A'
+                sh 'git commit -am "check in"'
+                sshagent (['git-jenkins.hevangel.com']) {
+                    sh 'git push origin HEAD:master'
+                }
             }
         }
     }
@@ -60,7 +63,7 @@ pipeline {
         }
         success {
             echo 'I succeeeded!'
-            // emailext body: 'jenkins test', subject: 'jenkins test', to: 'hevangel@gmail.com'
+            emailext body: 'jenkins test', subject: 'jenkins test', to: 'hevangel@gmail.com'
         }
         unstable {
             echo 'I am unstable :/'
