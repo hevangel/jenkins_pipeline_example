@@ -9,11 +9,11 @@ dummy test to generate fake Junit XML report
 
 def main():
     parser = argparse.ArgumentParser(description='dummy test')
-    parser.add_argument('-classes', type=int, default=100, help='number of classes')
-    parser.add_argument('-testcases', type=int, default=100, help='number of testcases')
+    parser.add_argument('-classes', type=int, default=10, help='number of classes')
+    parser.add_argument('-testcases', type=int, default=50, help='number of testcases')
     parser.add_argument('-error_rate', type=int, default=20, help='error rate')
-    parser.add_argument('-failure_rate', type=int, default=20, help='failure rate')
-    parser.add_argument('-skip_rate', type=int, default=20, help='skip rate')
+    parser.add_argument('-failure_rate', type=int, default=10, help='failure rate')
+    parser.add_argument('-skip_rate', type=int, default=10, help='skip rate')
     args = parser.parse_args()
 
     ts = TestSuite(name='my test suite', hostname=platform.node(), timestamp=datetime.now())
@@ -26,10 +26,10 @@ def main():
                           stderr = "stderr output")
             if random.randint(0, 100) < args.error_rate:
                 tc.add_error_info(message=f"error {i} {j}", output="error output message", error_type="ERR1")
-            if random.randint(0, 100) < args.failure_rate:
+            elif random.randint(0, 100) < args.failure_rate:
                 tc.add_failure_info(message=f"failure {i} {j}", output="failure output message", failure_type="FAIL1")
-            if random.randint(0, 100) < args.skip_rate:
-                tc.add_skipped_info(message=f"skipped {i} {j}", output="skipped output message")
+            elif random.randint(0, 100) < args.skip_rate:
+                    tc.add_skipped_info(message=f"skipped {i} {j}", output="skipped output message")
             ts.test_cases.append(tc)
 
 
