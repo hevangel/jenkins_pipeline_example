@@ -1,4 +1,4 @@
-# jenkins_github_example
+# Jenkins Pipeline Example
 
 Example of Jenkins and github integrations.
 
