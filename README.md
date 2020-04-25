@@ -12,7 +12,7 @@ wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 sudo apt update
 sudo apt upgrade
-sudo apt install openjdk-11-jre-headless docker jenkins
+sudo apt install openjdk-11-jre-headless docker jenkins git
 
 # Set server time zone (optional)
 sudo timedatectl set-timezone America/Vancouver
@@ -36,7 +36,7 @@ sudo yum install epel-release
 sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
 sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
 sudo yum update
-sudo yum install java-11-openjdk docker jenkins
+sudo yum install java-8-openjdk docker jenkins git
 
 # Start Jenkin service
 sudo systemctl start jenkins.service
@@ -45,6 +45,11 @@ sudo chkconfig jenkins on
 # Open port 8080
 sudo firewall-cmd --zone=public --permanent --add-port=8080/tcp
 sudo firewall-cmd --reload
-
-
 ```
+
+## Install Plug-ins
+- Build Timestamp
+- Blue Ocean
+- Pyenv
+- SSH Agent
+- Monitoring
