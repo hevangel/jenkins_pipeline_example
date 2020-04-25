@@ -9,8 +9,8 @@ dummy test to generate fake Junit XML report
 
 def main():
     parser = argparse.ArgumentParser(description='dummy test')
-    parser.add_argument('-classes', type=int, default=10, help='number of classes')
-    parser.add_argument('-testcases', type=int, default=50, help='number of testcases')
+    parser.add_argument('-classes', type=int, default=5, help='number of classes')
+    parser.add_argument('-testcases', type=int, default=10, help='number of testcases')
     parser.add_argument('-error_rate', type=int, default=20, help='error rate')
     parser.add_argument('-failure_rate', type=int, default=10, help='failure rate')
     parser.add_argument('-skip_rate', type=int, default=10, help='skip rate')

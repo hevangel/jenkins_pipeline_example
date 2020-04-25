@@ -38,6 +38,9 @@ sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
 sudo yum update
 sudo yum install java-8-openjdk docker jenkins git
 
+# Set server time zone (optional)
+sudo timedatectl set-timezone America/Vancouver
+
 # Start Jenkin service
 sudo systemctl start jenkins.service
 sudo chkconfig jenkins on

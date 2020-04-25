@@ -25,7 +25,7 @@ pipeline {
         stage('test') {
             // get credentials
             environment {
-                SSH_CREDS = credentials('git-jenkins.hevangel.com')
+                SSH_CREDS = credentials('git-hevangel')
             }
             steps {
                 echo 'test phase'
@@ -51,7 +51,7 @@ pipeline {
                 echo 'deploy phase'
                 sh 'git add -A'
                 sh 'git commit -am "check in"'
-                sshagent (['git-jenkins.hevangel.com']) {
+                sshagent (['git-hevangel']) {
                     sh 'git push origin HEAD:master'
                 }
             }
