@@ -1,216 +1,218 @@
 <?xml version="1.0" ?>
-<testsuites disabled="0" errors="8" failures="4" tests="50" time="27238.0">
-	<testsuite disabled="0" errors="8" failures="4" hostname="ip-172-31-11-181.us-west-2.compute.internal" name="my test suite" skipped="1" tests="50" time="27238" timestamp="2020-04-27 00:24:15.625179">
-		<testcase classname="myclass0" name="mytest0" time="326.000000">
+<testsuites disabled="0" errors="8" failures="3" tests="50" time="25356.0">
+	<testsuite disabled="0" errors="8" failures="3" hostname="ip-172-31-11-181.us-west-2.compute.internal" name="my test suite" skipped="4" tests="50" time="25356" timestamp="2020-04-28 00:24:04.813225">
+		<testcase classname="myclass0" name="mytest0" time="269.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass0" name="mytest1" time="560.000000">
+		<testcase classname="myclass0" name="mytest1" time="413.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass0" name="mytest2" time="358.000000">
+		<testcase classname="myclass0" name="mytest2" time="977.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass0" name="mytest3" time="159.000000">
-			<error message="error 0 3" type="ERR1">error output message</error>
+		<testcase classname="myclass0" name="mytest3" time="665.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass0" name="mytest4" time="964.000000">
+		<testcase classname="myclass0" name="mytest4" time="347.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass0" name="mytest5" time="912.000000">
-			<error message="error 0 5" type="ERR1">error output message</error>
+		<testcase classname="myclass0" name="mytest5" time="554.000000">
+			<skipped message="skipped 0 5" type="skipped">skipped output message</skipped>
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass0" name="mytest6" time="709.000000">
+		<testcase classname="myclass0" name="mytest6" time="397.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass0" name="mytest7" time="613.000000">
+		<testcase classname="myclass0" name="mytest7" time="549.000000">
+			<error message="error 0 7" type="ERR1">error output message</error>
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass0" name="mytest8" time="238.000000">
+		<testcase classname="myclass0" name="mytest8" time="575.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass0" name="mytest9" time="505.000000">
+		<testcase classname="myclass0" name="mytest9" time="922.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass1" name="mytest0" time="158.000000">
+		<testcase classname="myclass1" name="mytest0" time="215.000000">
+			<skipped message="skipped 1 0" type="skipped">skipped output message</skipped>
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass1" name="mytest1" time="155.000000">
+		<testcase classname="myclass1" name="mytest1" time="878.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass1" name="mytest2" time="758.000000">
+		<testcase classname="myclass1" name="mytest2" time="746.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass1" name="mytest3" time="642.000000">
+		<testcase classname="myclass1" name="mytest3" time="257.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass1" name="mytest4" time="837.000000">
+		<testcase classname="myclass1" name="mytest4" time="406.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass1" name="mytest5" time="875.000000">
+		<testcase classname="myclass1" name="mytest5" time="579.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass1" name="mytest6" time="850.000000">
+		<testcase classname="myclass1" name="mytest6" time="654.000000">
+			<error message="error 1 6" type="ERR1">error output message</error>
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass1" name="mytest7" time="114.000000">
-			<failure message="failure 1 7" type="FAIL1">failure output message</failure>
+		<testcase classname="myclass1" name="mytest7" time="120.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass1" name="mytest8" time="104.000000">
+		<testcase classname="myclass1" name="mytest8" time="397.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass1" name="mytest9" time="859.000000">
-			<failure message="failure 1 9" type="FAIL1">failure output message</failure>
+		<testcase classname="myclass1" name="mytest9" time="925.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass2" name="mytest0" time="765.000000">
+		<testcase classname="myclass2" name="mytest0" time="160.000000">
 			<error message="error 2 0" type="ERR1">error output message</error>
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass2" name="mytest1" time="130.000000">
+		<testcase classname="myclass2" name="mytest1" time="413.000000">
+			<skipped message="skipped 2 1" type="skipped">skipped output message</skipped>
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass2" name="mytest2" time="482.000000">
+		<testcase classname="myclass2" name="mytest2" time="312.000000">
+			<failure message="failure 2 2" type="FAIL1">failure output message</failure>
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass2" name="mytest3" time="574.000000">
+		<testcase classname="myclass2" name="mytest3" time="853.000000">
+			<error message="error 2 3" type="ERR1">error output message</error>
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass2" name="mytest4" time="351.000000">
+		<testcase classname="myclass2" name="mytest4" time="187.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass2" name="mytest5" time="113.000000">
+		<testcase classname="myclass2" name="mytest5" time="827.000000">
 			<error message="error 2 5" type="ERR1">error output message</error>
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass2" name="mytest6" time="135.000000">
+		<testcase classname="myclass2" name="mytest6" time="383.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass2" name="mytest7" time="959.000000">
+		<testcase classname="myclass2" name="mytest7" time="126.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass2" name="mytest8" time="899.000000">
-			<error message="error 2 8" type="ERR1">error output message</error>
+		<testcase classname="myclass2" name="mytest8" time="245.000000">
+			<skipped message="skipped 2 8" type="skipped">skipped output message</skipped>
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass2" name="mytest9" time="823.000000">
+		<testcase classname="myclass2" name="mytest9" time="154.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass3" name="mytest0" time="776.000000">
+		<testcase classname="myclass3" name="mytest0" time="189.000000">
 			<error message="error 3 0" type="ERR1">error output message</error>
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass3" name="mytest1" time="485.000000">
+		<testcase classname="myclass3" name="mytest1" time="873.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass3" name="mytest2" time="550.000000">
-			<failure message="failure 3 2" type="FAIL1">failure output message</failure>
+		<testcase classname="myclass3" name="mytest2" time="831.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass3" name="mytest3" time="866.000000">
+		<testcase classname="myclass3" name="mytest3" time="650.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass3" name="mytest4" time="455.000000">
-			<skipped message="skipped 3 4" type="skipped">skipped output message</skipped>
+		<testcase classname="myclass3" name="mytest4" time="471.000000">
+			<failure message="failure 3 4" type="FAIL1">failure output message</failure>
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass3" name="mytest5" time="167.000000">
+		<testcase classname="myclass3" name="mytest5" time="806.000000">
+			<error message="error 3 5" type="ERR1">error output message</error>
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass3" name="mytest6" time="498.000000">
+		<testcase classname="myclass3" name="mytest6" time="699.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass3" name="mytest7" time="506.000000">
-			<failure message="failure 3 7" type="FAIL1">failure output message</failure>
+		<testcase classname="myclass3" name="mytest7" time="320.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass3" name="mytest8" time="611.000000">
+		<testcase classname="myclass3" name="mytest8" time="956.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass3" name="mytest9" time="229.000000">
+		<testcase classname="myclass3" name="mytest9" time="261.000000">
+			<error message="error 3 9" type="ERR1">error output message</error>
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass4" name="mytest0" time="448.000000">
+		<testcase classname="myclass4" name="mytest0" time="417.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass4" name="mytest1" time="963.000000">
-			<error message="error 4 1" type="ERR1">error output message</error>
+		<testcase classname="myclass4" name="mytest1" time="276.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass4" name="mytest2" time="105.000000">
+		<testcase classname="myclass4" name="mytest2" time="553.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass4" name="mytest3" time="728.000000">
+		<testcase classname="myclass4" name="mytest3" time="219.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass4" name="mytest4" time="588.000000">
+		<testcase classname="myclass4" name="mytest4" time="853.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass4" name="mytest5" time="876.000000">
+		<testcase classname="myclass4" name="mytest5" time="694.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass4" name="mytest6" time="791.000000">
+		<testcase classname="myclass4" name="mytest6" time="270.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass4" name="mytest7" time="160.000000">
+		<testcase classname="myclass4" name="mytest7" time="393.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass4" name="mytest8" time="788.000000">
+		<testcase classname="myclass4" name="mytest8" time="611.000000">
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
-		<testcase classname="myclass4" name="mytest9" time="721.000000">
-			<error message="error 4 9" type="ERR1">error output message</error>
+		<testcase classname="myclass4" name="mytest9" time="509.000000">
+			<failure message="failure 4 9" type="FAIL1">failure output message</failure>
 			<system-out>stdout output</system-out>
 			<system-err>stderr output</system-err>
 		</testcase>
