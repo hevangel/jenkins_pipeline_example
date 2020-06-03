@@ -56,3 +56,4 @@ sudo firewall-cmd --reload
 - Pyenv
 - SSH Agent
 - Monitoring
+- Dashboard View
