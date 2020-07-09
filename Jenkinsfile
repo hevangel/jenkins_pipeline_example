@@ -1,9 +1,9 @@
-pipeline {
-    def getExternalWorkspace() {
-        extWorkspace = exwsAllocate diskPoolId: "jenkins"
-        return extWorkspace.getCompleteWorkspacePath()
-    }
+def getExternalWorkspace() {
+    extWorkspace = exwsAllocate diskPoolId: "jenkins"
+    return extWorkspace.getCompleteWorkspacePath()
+}
 
+pipeline {
     agent any
     // periodic trigger
     triggers {
