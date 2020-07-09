@@ -1,5 +1,10 @@
-ipeline {
-   agent any
+pipeline {
+   agent {
+        node {
+            label 'mynode'
+            customWorkspace '/var/lib/jenkins/custom_workspace'
+        }
+   }
    // periodic trigger
    triggers {
        cron('H 0 * * 1-5')
