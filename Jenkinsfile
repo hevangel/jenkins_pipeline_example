@@ -13,8 +13,8 @@ pipeline {
     //parameters {
     //    booleanParam(name: 'PUSH', defaultValue: false, description: 'Push to github')
     //}
-    stages {
-        exws (extWorkspace) {
+    exws (extWorkspace) {
+        stages {
             stage('build') {
                 steps {
                     echo 'build phase'
