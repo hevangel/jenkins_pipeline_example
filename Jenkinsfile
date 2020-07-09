@@ -3,10 +3,10 @@ pipeline {
         node {
             label 'linux'
             customWorkspace '/var/lib/jenkins/custom_workspace'
-            dir('git_example') {
-               sshagent (['git-hevangel']) {
-                   git 'git@github.com:hevangel-com/git_example.git'
-               }
+            sshagent (['git-hevangel']) {
+                dir('git_example') {
+                    git 'git@github.com:hevangel-com/git_example.git'
+                }
             }
         }
    }
