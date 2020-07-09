@@ -1,7 +1,7 @@
 ipeline {
    agent {
         node {
-            label 'my-defined-label'
+            label 'mynode'
             customWorkspace '/var/lib/jenkins/custom_workspace'
         }
    }
@@ -12,54 +12,53 @@ ipeline {
    //parameters {
    //    booleanParam(name: 'PUSH', defaultValue: false, description: 'Push to github')
    //}
-   exws (extWorkspace) {
-       stages {
-           stage('build') {
-               steps {
-                   echo 'build phase'
-                   echo "workspace: ${env.WORKSPACE} on ${env.JENKINS_URL}"
-                   // create python virtual environment
-                   sh 'python3 -m venv --system-site-packages venv'
-                   withPythonEnv("${WORKSPACE}/venv/") {
-                       sh 'pip3 install -r requirements.txt'
-                       sh 'python3 dummy_test.py'
-                   }
-                   sh 'touch a.txt'
-                   sh 'date >> a.txt'
+   stages {
+       stage('build') {
+           steps {
+               echo 'build phase'
+               echo "workspace: ${env.WORKSPACE} on ${env.JENKINS_URL}"
+               // create python virtual environment
+               sh 'python3 -m venv --system-site-packages venv'
+               withPythonEnv("${WORKSPACE}/venv/") {
+                   sh 'pip3 install -r requirements.txt'
+                   sh 'python3 dummy_test.py'
                }
+               sh 'touch a.txt'
+               sh 'date >> a.txt'
+               sh 'env'
            }
-           stage('test') {
-               // get credentials
-               environment {
-                   SSH_CREDS = credentials('git-hevangel')
-               }
-               steps {
-                   echo 'test phase'
-                   sh 'echo "SSH private key is located at $SSH_CREDS"'
-                   sh 'echo "SSH user is $SSH_CREDS_USR"'
-                   sh 'echo "SSH passphrase is $SSH_CREDS_PSW"'
-               }
+       }
+       stage('test') {
+           // get credentials
+           environment {
+               SSH_CREDS = credentials('git-hevangel')
            }
-           stage('archive') {
+           steps {
+               echo 'test phase'
+               sh 'echo "SSH private key is located at $SSH_CREDS"'
+               sh 'echo "SSH user is $SSH_CREDS_USR"'
+               sh 'echo "SSH passphrase is $SSH_CREDS_PSW"'
+           }
+       }
+       stage('archive') {
 
-               steps {
-                   echo 'archive phase'
-                   junit allowEmptyResults: true, testResults: 'test_results.xml'
-                   publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
-                   archiveArtifacts 'a.txt'
+           steps {
+               echo 'archive phase'
+               junit allowEmptyResults: true, testResults: 'test_results.xml'
+               publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+               archiveArtifacts 'a.txt'
 
-               }
            }
-           stage('deploy') {
-               // skip deploy if the build is triggered by github push webhook
-               when {not {triggeredBy cause: 'GitHubPushCause'}}
-               steps {
-                   echo 'deploy phase'
-                   sh 'git add -A'
-                   sh 'git commit -am "check in"'
-                   sshagent (['git-hevangel']) {
-                       sh 'git push origin HEAD:master'
-                   }
+       }
+       stage('deploy') {
+           // skip deploy if the build is triggered by github push webhook
+           when {not {triggeredBy cause: 'GitHubPushCause'}}
+           steps {
+               echo 'deploy phase'
+               sh 'git add -A'
+               sh 'git commit -am "check in"'
+               sshagent (['git-hevangel']) {
+                   sh 'git push origin HEAD:master'
                }
            }
        }
