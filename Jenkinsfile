@@ -15,8 +15,7 @@ pipeline {
    stages {
        stage('build') {
            steps {
-               echo 'build phase'
-               echo "workspace: ${env.WORKSPACE} on ${env.JENKINS_URL}"
+               sh 'env'
                // create python virtual environment
                sh 'python3 -m venv --system-site-packages venv'
                withPythonEnv("${WORKSPACE}/venv/") {
@@ -25,7 +24,6 @@ pipeline {
                }
                sh 'touch a.txt'
                sh 'date >> a.txt'
-               sh 'env'
            }
        }
        stage('test') {
