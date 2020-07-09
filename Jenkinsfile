@@ -1,6 +1,7 @@
 pipeline {
    agent {
         node {
+            label 'linux'
             customWorkspace '/var/lib/jenkins/custom_workspace'
         }
    }
