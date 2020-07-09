@@ -16,7 +16,7 @@ pipeline {
    stages {
        stage('build') {
            steps {
-               dir('git_example') {
+               dir('../git_example') {
                     git 'https://github.com/hevangel-com/git_example.git'
                }
                sh 'env'
