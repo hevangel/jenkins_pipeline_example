@@ -2,6 +2,7 @@ def getExternalWorkspace() {
     extWorkspace = exwsAllocate diskPoolId: "jenkins"
     return extWorkspace.getCompleteWorkspacePath()
 }
+def extWorkspace = exwsAllocate 'diskpool1'
 
 pipeline {
     agent any
@@ -12,7 +13,6 @@ pipeline {
     //parameters {
     //    booleanParam(name: 'PUSH', defaultValue: false, description: 'Push to github')
     //}
-    def extWorkspace = exwsAllocate 'diskpool1'
     stages {
         exws (extWorkspace) {
             stage('build') {
