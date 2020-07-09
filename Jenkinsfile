@@ -1,10 +1,5 @@
 ipeline {
-   agent {
-        node {
-            label 'mynode'
-            customWorkspace '/var/lib/jenkins/custom_workspace'
-        }
-   }
+   agent any
    // periodic trigger
    triggers {
        cron('H 0 * * 1-5')
