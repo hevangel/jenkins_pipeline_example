@@ -12,10 +12,8 @@ pipeline {
     //parameters {
     //    booleanParam(name: 'PUSH', defaultValue: false, description: 'Push to github')
     //}
+    def extWorkspace = exwsAllocate 'diskpool1'
     stages {
-        stage('allocate external workspace')
-        def extWorkspace = exwsAllocate 'diskpool1'
-
         exws (extWorkspace) {
             stage('build') {
                 steps {
