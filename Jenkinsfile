@@ -3,9 +3,7 @@ pipeline {
         node {
             label 'linux'
             customWorkspace '/var/lib/jenkins/custom_workspace'
-            dir('git_example') {
-                git 'https://github.com/hevangel-com/git_example.git'
-            }
+
         }
    }
    // periodic trigger
@@ -18,6 +16,9 @@ pipeline {
    stages {
        stage('build') {
            steps {
+               dir('git_example') {
+                    git 'https://github.com/hevangel-com/git_example.git'
+               }
                sh 'env'
                // create python virtual environment
                sh 'python3 -m venv --system-site-packages venv'
