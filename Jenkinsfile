@@ -3,6 +3,11 @@ pipeline {
         node {
             label 'linux'
             customWorkspace '/var/lib/jenkins/custom_workspace'
+            dir('git_example') {
+               sshagent (['git-hevangel']) {
+                   git 'git@github.com:hevangel-com/git_example.git'
+               }
+            }
         }
    }
    // periodic trigger
