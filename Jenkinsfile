@@ -3,7 +3,7 @@ def getExternalWorkspace() {
     return extWorkspace.getCompleteWorkspacePath()
 }
 
-def extWorkspace = exwsAllocate diskPoolId: 'diskpool1'
+def extWorkspace = exwsAllocate 'diskpool1'
 node ('linux') {
     exws (extWorkspace) {
         echo 'hello'
