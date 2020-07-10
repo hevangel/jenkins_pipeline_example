@@ -2,8 +2,7 @@ pipeline {
     agent {
         node {
             label 'centos7'
-            customWorkspace "${env.JENKINS_HOME}/jenkins_pipeline_example"
-
+            // customWorkspace "${env.JENKINS_HOME}/jenkins_pipeline_example"
         }
     }
     // periodic trigger
