@@ -2,7 +2,7 @@ pipeline {
    agent {
         node {
             label 'linux'
-            customWorkspace '/var/lib/jenkins/custom_workspace'
+            customWorkspace ${env.JENKINS_HOME} + '/jenkins_pipeline_example'
 
         }
    }
