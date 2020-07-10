@@ -18,7 +18,7 @@ pipeline {
             steps {
                 // checkout git repo
                 dir('../git_example') {
-                    git 'https://github.com/hevangel-com/git_example.git'
+                    git url: 'git@github.com:hevangel-com/git_example.git', credentialsId: 'git-hevangel'
                 }
                 sh 'env'
                 // create python virtual environment
