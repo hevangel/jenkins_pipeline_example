@@ -1,7 +1,7 @@
 pipeline {
     agent {
         node {
-            label 'amazon'
+            label 'centos'
             customWorkspace "${env.JENKINS_HOME}/jenkins_pipeline_example"
 
         }
