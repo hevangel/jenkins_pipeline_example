@@ -2,6 +2,7 @@ pipeline {
     agent {
         node {
             label 'amazon'
+            echo "${env.HOME}"
             customWorkspace "${env.HOME}/workspace/jenkins_pipeline_example"
         }
     }
