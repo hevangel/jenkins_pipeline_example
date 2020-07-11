@@ -2,7 +2,7 @@ pipeline {
     agent {
         node {
             label 'amazon'
-            customWorkspace "${env.HOME}/workspace/jenkins_pipeline_example"
+            customWorkspace "${env.HOME}" + "/workspace/jenkins_pipeline_example"
         }
     }
     // periodic trigger
