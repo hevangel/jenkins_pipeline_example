@@ -2,7 +2,7 @@ pipeline {
     agent {
         node {
             label 'amazon'
-            customWorkspace "${env.HOME}" + "/workspace/jenkins_pipeline_example"
+            customWorkspace "${env.WORKSPACE}/jenkins_pipeline_example2"
         }
     }
     // periodic trigger
@@ -15,7 +15,6 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                echo "${env.HOME}" + "/workspace/jenkins_pipeline_example"
                 // checkout git repo
                 dir('../git_example') {
                     git url: 'git@github.com:hevangel-com/git_example.git', credentialsId: 'git-hevangel'
