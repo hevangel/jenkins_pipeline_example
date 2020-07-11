@@ -2,7 +2,6 @@ pipeline {
     agent {
         node {
             label 'amazon'
-            echo "${env.HOME}"
             customWorkspace "${env.HOME}/workspace/jenkins_pipeline_example"
         }
     }
@@ -16,6 +15,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
+                echo "${env.HOME}"
                 // checkout git repo
                 dir('../git_example') {
                     git url: 'git@github.com:hevangel-com/git_example.git', credentialsId: 'git-hevangel'
