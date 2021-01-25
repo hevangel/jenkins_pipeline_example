@@ -5,13 +5,13 @@
  - Generate a fake Junit test result
  - Push the artifact into github
 1. Object Storage integration
- [ ] trigger by the first job
- [ ] push into S3
- [ ] push into Google Storage
+ - [ ] trigger by the first job
+ - [ ] push into S3
+ - [ ] push into Google Storage
 1. Docker integration
- [ ] node
- [ ] stage
-1. Pallellel
+ - [ ] node
+ - [ ] stage
+1. Use parallel agent
 
 ## Ubuntu master install
 ```bash
