@@ -1,9 +1,17 @@
 # Jenkins Pipeline Example
 
-Jenkins and github integration.  
-Create a dummy Jenkins pipeline with a fake Junit test generator
-Push a dummy file into github
-Try out docker and remote agents
+1. Basic Jenkins and github integration.  
+ - Create a multiple stages pipeline 
+ - Generate a fake Junit test result
+ - Push the artifact into github
+1. Object Storage integration
+ [ ] trigger by the first job
+ [ ] push into S3
+ [ ] push into Google Storage
+1. Docker integration
+ [ ] node
+ [ ] stage
+1. Pallellel
 
 ## Ubuntu master install
 ```bash
@@ -12,7 +20,8 @@ wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 sudo apt update
 sudo apt upgrade
-sudo apt install openjdk-11-jre-headless docker jenkins git
+sudo apt install openjdk-14-jre-headless docker git
+sudo apt install jenkins
 
 # Set server time zone (optional)
 sudo timedatectl set-timezone America/Vancouver
@@ -23,11 +32,12 @@ sudo timedatectl set-timezone America/Vancouver
 # Restart Jenkins
 sudo service jenkins restart
 
-# Ubuntu open port 8080 in iptables (optional)
+# Open port 8080 in iptables (optional)
 sudo apt-get install iptables-persistent
 sudo iptables -I INPUT -p tcp --dport 8080 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 sudo iptables -I OUTPUT -p tcp --sport 8080 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 sudo iptables-save |sudo tee /etc/iptables/rules.v4
+
 ```
 ## Centos master install
 ```bash
@@ -49,6 +59,10 @@ sudo chkconfig jenkins on
 sudo firewall-cmd --zone=public --permanent --add-port=8080/tcp
 sudo firewall-cmd --reload
 ```
+## Ubuntu slave install
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install openjdk-11-jre-headless docker iputils-ping net-tools
 
 ## Install Plug-ins
 - Build Timestamp
