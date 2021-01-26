@@ -16,7 +16,7 @@ def main():
     parser.add_argument('-failure_rate', type=int, default=10, help='failure rate')
     parser.add_argument('-skip_rate', type=int, default=10, help='skip rate')
     parser.add_argument('-outputfile', type=str, default='test_results.xml', help='output file')
-    parser.add_argument('-print', type='store_true', help='print the test results')
+    parser.add_argument('-print', action='store_true', help='print the test results')
     args = parser.parse_args()
 
     ts = TestSuite(name='my test suite', hostname=platform.node(), timestamp=datetime.now())
