@@ -48,7 +48,7 @@ pipeline {
                 stash includes: 'test_results.xml', name: 'juint'
 
                 // create HTML report 
-                sh "sed 's/BUILD_ID/${BUILD_ID}/' report_template.html"
+                sh "sed 's/BUILD_ID/${BUILD_ID}/' report_template.html > test_report.html"
         
                 // add a line to the 
                 dir('git_example') {
@@ -120,11 +120,11 @@ pipeline {
         }
         unsuccessful {
             echo 'I am unsuccessful'
-            mail subject: 'Jenkins build error', 
-                to: 'jenkins@hevangel.com', 
-                body: """
-                    Job: ${env.JOB_NAME}\n Build: ${env.BUILD_NUMBER}\n URL: ${env.BUILD_URL}\n
-                """
+            //mail subject: 'Jenkins build error', 
+            //    to: 'jenkins@hevangel.com', 
+            //    body: """
+            //        Job: ${env.JOB_NAME}\n Build: ${env.BUILD_NUMBER}\n URL: ${env.BUILD_URL}\n
+            //    """
         }
         cleanup {
             echo 'clean up at the end'
