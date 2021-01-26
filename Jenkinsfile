@@ -66,7 +66,6 @@ pipeline {
                 echo '=== Archive Phase ==='
                 junit allowEmptyResults: true, testResults: 'test_results.xml'
 
-                /*
                 publishHTML target: [
                     allowMissing: false, 
                     alwaysLinkToLastBuild: True, 
@@ -76,7 +75,6 @@ pipeline {
                     reportName: 'HTML Report Name', 
                     reportTitles: 'HTML Report Title'
                 ]
-                */
 
                 dir('git_example') {
                     archiveArtifacts 'jenkins_runs.txt'

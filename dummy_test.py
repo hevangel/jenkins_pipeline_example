@@ -11,7 +11,7 @@ def main():
     parser = argparse.ArgumentParser(description='dummy test')
     parser.add_argument('-classes', type=int, default=5, help='number of classes')
     parser.add_argument('-testcases', type=int, default=10, help='number of testcases')
-    parser.add_argument('-pass_rate', type=int, default=60, help='pass rate')
+    parser.add_argument('-pass_rate', type=int, default=75, help='pass rate')
     parser.add_argument('-error_rate', type=int, default=20, help='error rate')
     parser.add_argument('-failure_rate', type=int, default=10, help='failure rate')
     parser.add_argument('-skip_rate', type=int, default=10, help='skip rate')
@@ -27,7 +27,7 @@ def main():
                           elapsed_sec=random.randint(100, 1000),
                           stdout = "stdout output",
                           stderr = "stderr output")
-            if random.randint(0, 100) > args.pass_rate:
+            if random.randint(0, 100) < args.pass_rate:
                 if random.randint(0, 100) < args.error_rate:
                     tc.add_error_info(message=f"error {i} {j}", output="error output message", error_type="ERR1")
                 elif random.randint(0, 100) < args.failure_rate:
