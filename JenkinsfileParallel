@@ -1,10 +1,10 @@
 pipeline {
     agent none
-    //agent {
-    //    node {
-    //        label 'master'
-    //    }
-    //}
+    agent {
+        node {
+            label 'ubuntu20.04'
+        }
+    }
     // triggers { upstream(upstreamProjects: 'jenkins_pipeline_example', threshold: hudson.model.Result.SUCCESS) }
     options {
         timestamps()
@@ -64,11 +64,11 @@ pipeline {
                 expression {return params.RunMatrixStage}
             }
             matrix {
-                //agent {
-                //    node {
-                //        label "ubuntu20.04"
-                //    }
-                //}
+                agent {
+                    node {
+                        label "ubuntu20.04"
+                    }
+                }
                 axes {
                     axis {
                         name 'PLATFORM'
