@@ -9,13 +9,13 @@ pipeline {
         disableConcurrentBuilds()
         timeout(time: 10, unit: 'SECONDS')
     }
-    // parameters {
-    //    booleanParam(name: 'bool', defaultValue: false, description: '')
-    //    string(name: 'string', defaultValue: 'hello', description: '')
-    //    text(name: 'text', defaultValue: 'One\nTwo\nThree\n', description: '')
-    //    choice(name: 'choice', choices: ['one','two','three'], description: '')
-    //    password(name: 'password', defaultValue: 'SECRET', description: '')
-    // }
+    parameters {
+        booleanParam(name: 'bool', defaultValue: false, description: '')
+        string(name: 'string', defaultValue: 'hello', description: '')
+        choice(name: 'choice', choices: ['one','two','three'], description: '')
+        password(name: 'password', defaultValue: 'SECRET', description: '')
+        text(name: 'text', defaultValue: 'One\nTwo\nThree\n', description: '')
+    }
     stages {
         stage("One") {
             options {
@@ -25,7 +25,7 @@ pipeline {
                 sleep 1
                 echo 'Stage 1'
 
-                // echo "${params.bool}"
+                echo "Paramaters: ${params.bool} ${param.string} ${param.choice} ${param.password} ${param.text}"
             }
         }
         stage("Two") {
