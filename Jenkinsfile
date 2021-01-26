@@ -125,7 +125,7 @@ pipeline {
         unsuccessful {
             echo 'I am unsuccessful'
             mail subject: 'Jenkins build error', 
-                to: 'jenkins@hevangel.com', 
+                to: 'jenkins@horace.org', 
                 body: """
                     Job: ${env.JOB_NAME}\n Build: ${env.BUILD_NUMBER}\n URL: ${env.BUILD_URL}\n
                 """
