@@ -25,8 +25,8 @@ wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 sudo apt update
 sudo apt upgrade
-sudo apt install openjdk-14-jre-headless docker git
-sudo apt install jenkins
+sudo apt install -y openjdk-14-jre-headless docker git
+sudo apt install -y jenkins
 
 # Set server time zone (optional)
 sudo timedatectl set-timezone America/Vancouver
@@ -68,7 +68,7 @@ sudo firewall-cmd --reload
 ```bash
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install openjdk-11-jre-headless docker iputils-ping net-tools
+sudo apt-get install -y openjdk-11-jre-headless docker iputils-ping net-tools git
 ```
 
 ## Install Plug-ins
