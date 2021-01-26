@@ -4,14 +4,19 @@
  - Create a multiple stages pipeline 
  - Generate a fake Junit test result
  - Push the artifact into github
-2. Object Storage integration (JenkinsfileObjectStorage)
- - [ ] trigger by the first job
- - [ ] push into S3
- - [ ] push into Google Storage
+2. Use parallel agent (JenkinfileParallel)
+ - [ ] static
+ - [ ] fail first
+ - [ ] matrix
+ - [ ] dynamic loop list
+ - [ ] control flow
 3. Docker integration (JenkinfileDocker)
  - [ ] node
  - [ ] stage
-4. Use parallel agent
+4. Object Storage integration (JenkinsfileObjectStorage)
+ - [ ] trigger by the first job
+ - [ ] push into S3
+ - [ ] push into Google Storage
 
 ## Ubuntu master install
 ```bash
