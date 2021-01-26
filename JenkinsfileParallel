@@ -59,6 +59,7 @@ pipeline {
         }
         // --------------------------------------------------------------------
         stage("Matrix") {
+            agent any
             when {
                 expression {return params.RunMatrixStage}
             }
@@ -76,12 +77,12 @@ pipeline {
                 stages {
                     stage('One') {
                         steps {
-                            echo "$PLATFORM - stage 1"
+                            echo "$PLATFORM $BROWSER - stage 1"
                         }
                     }
                     stage('Two') {
                         steps {
-                            echo "$PLATFORM - stage 2"
+                            echo "$PLATFORM $BROWSER - stage 2"
                         }
                     }
                 }
