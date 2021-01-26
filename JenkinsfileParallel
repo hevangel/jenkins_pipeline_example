@@ -11,9 +11,11 @@ pipeline {
         timeout(time: 10, unit: 'SECONDS')
     }
     parameters {
+        // Parallel Stage parameters
         booleanParam(name: 'RunParallelStage', defaultValue: true, description: 'Run Parallel Stage')
-        booleanParam(name: 'failFast', defaultValue: true, description: 'Parallel failFast')
         string(name: 'SleepDelay', defaultValue: '3', description: 'Sleep delay inside timeout')
+        string(name: 'shCmd', defaultValue: 'false', description: 'sh command to run')
+
         choice(name: 'choice', choices: ['one','two','three'], description: '')
         password(name: 'password', defaultValue: 'SECRET', description: '')
         text(name: 'text', defaultValue: 'One\nTwo\nThree\n', description: '')
@@ -36,6 +38,7 @@ pipeline {
                         timeout(time: 2, unit: 'SECONDS')
                     }
                     steps {
+                        // Use integer parameter
                         sleep params.SleepDelay.toInteger()
                         echo 'Stage 2'
                     }
@@ -46,7 +49,7 @@ pipeline {
                     }
                     steps {
                         echo 'Stage 3'
-                        sh 'false'
+                        sh "${params.shCmd}"
                     }
                 }
             }
