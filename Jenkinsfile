@@ -17,11 +17,15 @@ pipeline {
     stages {
         stage('build') {
             steps {
+                echo '=== ENV ==='
+                sh 'env'
+
+                echo '=== Build Phase ==='
+
                 // checkout git repo
                 dir('git_example') {
                     git url: 'git@github.com:hevangel-com/git_example.git', credentialsId: 'git-hevangel'
                 }
-                sh 'env'
 
                 // create python virtual environment
                 sh 'python3 -m venv --system-site-packages venv'
@@ -36,7 +40,7 @@ pipeline {
                 SSH_CREDS = credentials('git-hevangel')
             }
             steps {
-                echo 'test phase'
+                echo '=== Test Phase ==='
                 sh 'echo "SSH private key is located at $SSH_CREDS"'
                 sh 'echo "SSH user is $SSH_CREDS_USR"'
                 sh 'echo "SSH passphrase is $SSH_CREDS_PSW"'
@@ -45,7 +49,7 @@ pipeline {
                 withPythonEnv("${WORKSPACE}/venv/") {
                     sh 'python3 dummy_test.py'
                 }
-                stash includes: 'test_results.xml', name: 'juint'
+                // stash includes: 'test_results.xml', name: 'juint'
 
                 // create HTML report 
                 sh "sed 's/BUILD_ID/${BUILD_ID}/' report_template.html > test_report.html"
@@ -59,9 +63,10 @@ pipeline {
         }
         stage('archive') {
             steps {
-                echo 'archive phase'
-                junit allowEmptyResults: true, testResults: 'test_results.xml'
+                echo '=== Archive Phase ==='
+                // junit allowEmptyResults: true, testResults: 'test_results.xml'
 
+                /*
                 publishHTML target: [
                     allowMissing: false, 
                     alwaysLinkToLastBuild: True, 
@@ -71,6 +76,7 @@ pipeline {
                     reportName: 'HTML Report Name', 
                     reportTitles: 'HTML Report Title'
                 ]
+                */
 
                 dir('git_example') {
                     archiveArtifacts 'jenkins_runs.txt'
