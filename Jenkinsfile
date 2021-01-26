@@ -16,6 +16,11 @@ pipeline {
     //}
     stages {
         stage('build') {
+            environment {
+                // set env var
+                ENV_TEST = 'testing'
+                ENV_TEST2 = "${sh(returnStdout: true, script: 'date')}"
+            }
             steps {
                 echo '=== ENV ==='
                 sh 'env'
@@ -35,8 +40,11 @@ pipeline {
             }
         }
         stage('test') {
-            // get credentials
             environment {
+                // set env var
+                ENV_TEST = 'testing'
+
+                // get credentials
                 SSH_CREDS = credentials('git-hevangel')
             }
             steps {
@@ -125,10 +133,14 @@ pipeline {
         unsuccessful {
             echo 'I am unsuccessful'
             mail subject: 'Jenkins build error', 
-                to: 'jenkins@horace.org', 
+                to: 'jenkins@hevangel.com', 
                 body: """
-                    Job: ${env.JOB_NAME}\n Build: ${env.BUILD_NUMBER}\n URL: ${env.BUILD_URL}\n
-                """
+                \nJob: ${JOB_NAME}
+                \nBuild: ${BUILD_NUMBER}
+                \nURL: ${BUILD_URL}
+                \nNode: ${NODE_NAME}
+                \nWorkspace: ${WORKSPACE}
+               """
         }
         cleanup {
             echo 'clean up at the end'
