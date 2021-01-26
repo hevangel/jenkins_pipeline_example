@@ -4,12 +4,10 @@ pipeline {
     // parameters {
     //    booleanParam(name: 'PUSH', defaultValue: false, description: 'Push to github')
     // }
-        stages {
-            stage("One") {
-                    sleep 10
-                    echo 'hello'
-                }
-            }
+    stages {
+        stage("One") {
+            sleep 10
+            echo 'hello'
         }
-    
+    }
 }
