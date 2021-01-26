@@ -15,7 +15,8 @@ def main():
     parser.add_argument('-error_rate', type=int, default=20, help='error rate')
     parser.add_argument('-failure_rate', type=int, default=10, help='failure rate')
     parser.add_argument('-skip_rate', type=int, default=10, help='skip rate')
-    parser.add_argument('-output_File', type=str, default='test_results.xml', help='output file')
+    parser.add_argument('-outputfile', type=str, default='test_results.xml', help='output file')
+    parser.add_argument('-print', type='store_true', help='print the test results')
     args = parser.parse_args()
 
     ts = TestSuite(name='my test suite', hostname=platform.node(), timestamp=datetime.now())
@@ -36,9 +37,10 @@ def main():
             ts.test_cases.append(tc)
 
     # pretty printing is on by default but can be disabled using prettyprint=False
-    print(TestSuite.to_xml_string([ts]))
+    if args.print:
+        print(TestSuite.to_xml_string([ts]))
 
-    with open(args.output_file, 'w') as f:
+    with open(args.outputfile, 'w') as f:
         TestSuite.to_file(f, [ts], prettyprint=True)
 
 if __name__ == "__main__":
