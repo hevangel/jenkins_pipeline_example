@@ -1,9 +1,10 @@
 pipeline {
-    agent {
-        node {
-            label 'ubuntu20.04'
-        }
-    }
+    agent none
+    // agent {
+    //     node {
+    //         label 'ubuntu20.04'
+    //     }
+    // }
     // triggers { upstream(upstreamProjects: 'jenkins_pipeline_example', threshold: hudson.model.Result.SUCCESS) }
     options {
         timestamps()
@@ -12,9 +13,9 @@ pipeline {
     }
     parameters {
         // Parallel Stage parameters
-        booleanParam(name: 'RunParallelStage', defaultValue: false, description: 'Run Parallel Stage')
-        string(name: 'SleepDelay', defaultValue: '3', description: 'Sleep delay inside timeout')
-        string(name: 'shCmd', defaultValue: 'false', description: 'sh command to run')
+        booleanParam(name: 'RunParallelStage', defaultValue: true, description: 'Run Parallel Stage')
+        string(name: 'SleepDelay', defaultValue: '1', description: 'Sleep delay inside timeout')
+        string(name: 'shCmd', defaultValue: 'true', description: 'sh command to run')
         // Matrix Stage parameters
         booleanParam(name: 'RunMatrixStage', defaultValue: true, description: 'Run Matrix Stage')
         // Misc
@@ -34,6 +35,8 @@ pipeline {
                     steps {
                         sleep 1
                         echo 'Stage 1'
+                        sh 'whoami'
+                        sh 'pwd'
                     }
                 }
                 stage("Two") {
@@ -71,7 +74,8 @@ pipeline {
                 axes {
                     axis {
                         name 'PLATFORM'
-                        values 'ubuntu20.04', 'ubuntu', 'centos7'
+                        // values 'ubuntu20.04', 'ubuntu', 'centos7'
+                        values 'oci1', 'master'
                     }
                 }
                 stages {
