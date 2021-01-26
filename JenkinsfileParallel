@@ -59,11 +59,11 @@ pipeline {
         }
         // --------------------------------------------------------------------
         stage("Matrix") {
-            agent any
             when {
                 expression {return params.RunMatrixStage}
             }
             matrix {
+                agent any
                 axes {
                     axis {
                         name 'PLATFORM'
