@@ -67,6 +67,16 @@ pipeline {
                     sh 'touch jenkins_runs.txt'
                     sh 'date >> jenkins_runs.txt'
                 }
+
+                // catch error
+                try {
+                    sh 'false'
+                    echo 'succeeded'
+                } catch (err) {
+                    echo "failed: ${err}"
+                } finally {
+                    echo 'finally'
+                }
             }
         }
         stage('archive') {
