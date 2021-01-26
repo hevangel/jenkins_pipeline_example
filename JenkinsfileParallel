@@ -1,9 +1,9 @@
 pipeline {
-    agent {
-        node {
-            label 'master'
-        }
-    }
+    //agent {
+    //    node {
+    //        label 'master'
+    //    }
+    //}
     // triggers { upstream(upstreamProjects: 'jenkins_pipeline_example', threshold: hudson.model.Result.SUCCESS) }
     options {
         timestamps()
