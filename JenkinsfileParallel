@@ -23,8 +23,8 @@ pipeline {
         }
         stage("Two") {
             options {
-                timeout(time: 2, unit: 'SECONDS')
                 retry(2)
+                timeout(time: 2, unit: 'SECONDS')
             }
             steps {
                 sleep 3
