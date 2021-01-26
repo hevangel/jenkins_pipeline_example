@@ -72,8 +72,8 @@ pipeline {
                     keepAll: true, 
                     reportDir: '', 
                     reportName: 'HTML Report', 
-                    reportTitles: 'Report, Template'
-                    reportFiles: 'test_report.html, report_template.thml', 
+                    reportTitles: 'Report, Template',
+                    reportFiles: 'test_report.html, report_template.thml'
                 ]
 
                 dir('git_example') {
