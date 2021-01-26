@@ -69,11 +69,11 @@ pipeline {
                 publishHTML target: [
                     allowMissing: false, 
                     alwaysLinkToLastBuild: true, 
-                    keepAll: false, 
+                    keepAll: true, 
                     reportDir: '', 
-                    reportFiles: 'test_report.html', 
-                    reportName: 'Report', 
-                    reportTitles: ''
+                    reportName: 'HTML Report', 
+                    reportTitles: 'Report, Template'
+                    reportFiles: 'test_report.html, report_template.thml', 
                 ]
 
                 dir('git_example') {
