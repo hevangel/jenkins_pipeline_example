@@ -1,5 +1,4 @@
 pipeline {
-    agent none
     agent {
         node {
             label 'ubuntu20.04'
@@ -62,7 +61,7 @@ pipeline {
         stage("Matrix") {
             when {
                 expression {return params.RunMatrixStage}
-            } 
+            }
             matrix {
                 agent {
                     node {
