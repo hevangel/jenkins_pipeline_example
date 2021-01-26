@@ -11,21 +11,24 @@ pipeline {
         timeout(time: 10, unit: 'SECONDS')
     }
     parameters {
-        booleanParam(name: 'bool', defaultValue: false, description: '')
-        string(name: 'string', defaultValue: 'hello', description: '')
+        booleanParam(name: 'RunParallelStage', defaultValue: true, description: 'Run Parallel Stage')
+        booleanParam(name: 'failFast', defaultValue: true, description: 'Parallel failFast')
+        string(name: 'SleepDelay', defaultValue: '3', description: 'Sleep delay inside timeout')
         choice(name: 'choice', choices: ['one','two','three'], description: '')
         password(name: 'password', defaultValue: 'SECRET', description: '')
         text(name: 'text', defaultValue: 'One\nTwo\nThree\n', description: '')
     }
     stages {
-        stage("Parallel") {
+       stage("Parallel") {
+            when {
+                expression {return params.RunParallelStage}
+            }
             failFast true
             parallel {
                 stage("One") {
                     steps {
                         sleep 1
                         echo 'Stage 1'
-                        // echo "Paramaters: ${params.bool} ${param.string} ${param.choice} ${param.password} ${param.text}"
                     }
                 }
                 stage("Two") {
@@ -33,7 +36,7 @@ pipeline {
                         timeout(time: 2, unit: 'SECONDS')
                     }
                     steps {
-                        sleep 1
+                        sleep params.SleepDelay.toInteger()
                         echo 'Stage 2'
                     }
                 }
