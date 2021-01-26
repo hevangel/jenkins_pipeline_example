@@ -23,7 +23,6 @@ pipeline {
         }
         stage("Two") {
             options {
-                retry(2)
                 timeout(time: 2, unit: 'SECONDS')
             }
             steps {
@@ -32,8 +31,12 @@ pipeline {
             }
         }
         stage("Three") {
+            options {
+                retry(2)
+            }
             steps {
                 echo 'Stage 3'
+                sh 'false'
             }
         }
     }
