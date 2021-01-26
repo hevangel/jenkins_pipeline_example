@@ -63,7 +63,11 @@ pipeline {
                 expression {return params.RunMatrixStage}
             }
             matrix {
-                agent any
+                agent {
+                    node {
+                        label "ubuntu20.04"
+                    }
+                }
                 axes {
                     axis {
                         name 'PLATFORM'
