@@ -1,11 +1,12 @@
 pipeline {
-    agent any 
+    // agent any 
+    node master
+    timeout(unit: 'SECONDS', time: 5) {
     // parameters {
     //    booleanParam(name: 'PUSH', defaultValue: false, description: 'Push to github')
     // }
-    timeout(unit: 'SECONDS', time: 5) {
+    stages {
         stage("One") {
-            node {
                 sleep 10
                 echo 'hello'
             }
