@@ -4,7 +4,7 @@ pipeline {
             label 'master'
         }
     }
-    triggers { upstream(upstreamProjects: 'jenkins_pipeline_example', threshold: hudson.model.Result.SUCCESS) }
+    // triggers { upstream(upstreamProjects: 'jenkins_pipeline_example', threshold: hudson.model.Result.SUCCESS) }
     options {
         disableConcurrentBuilds()
         timeout(time: 10, unit: 'SECONDS')
