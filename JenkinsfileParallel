@@ -12,8 +12,21 @@ pipeline {
     stages {
         stage("One") {
             steps {
-                sleep 10
-                echo 'hello'
+                sleep 1
+                echo 'Stage 1'
+            }
+        }
+        stage("Two") {
+            options {
+                timeout(time: 2, unit: 'SECONDS')
+            }
+            steps {
+                sleep 3
+                echo 'Stage 2'
+            }
+        stage("Three") {
+            steps {
+                echo 'Stage 3'
             }
         }
     }
