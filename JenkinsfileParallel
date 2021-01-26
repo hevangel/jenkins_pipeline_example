@@ -29,6 +29,7 @@ pipeline {
                 stage("One") {
                     agent none
                     steps {
+                        echo "${NODE_NAME}"
                         sleep 1
                         echo 'Stage 1'
                     }
@@ -38,6 +39,7 @@ pipeline {
                         timeout(time: 2, unit: 'SECONDS')
                     }
                     steps {
+                        echo "${NODE_NAME}"
                         // Use integer parameter
                         sleep params.SleepDelay.toInteger()
                         echo 'Stage 2'
