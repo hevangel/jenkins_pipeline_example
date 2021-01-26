@@ -4,7 +4,6 @@ pipeline {
             label 'master'
         }
     options {
-        disableConcurrentBuilds()
         timeout(time: 10, unit: 'SECONDS')
     }
     // parameters {
@@ -23,7 +22,6 @@ pipeline {
         stage("Two") {
             options {
                 timeout(time: 2, unit: 'SECONDS')
-                // retry(2)
             }
             steps {
                 sleep 3
