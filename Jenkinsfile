@@ -73,7 +73,7 @@ pipeline {
                     reportDir: '', 
                     reportName: 'HTML Report', 
                     reportTitles: 'Report, Template',
-                    reportFiles: 'test_report.html, report_template.thml'
+                    reportFiles: 'test_report.html, report_template.html',
                 ]
 
                 dir('git_example') {
@@ -124,11 +124,11 @@ pipeline {
         }
         unsuccessful {
             echo 'I am unsuccessful'
-            //mail subject: 'Jenkins build error', 
-            //    to: 'jenkins@hevangel.com', 
-            //    body: """
-            //        Job: ${env.JOB_NAME}\n Build: ${env.BUILD_NUMBER}\n URL: ${env.BUILD_URL}\n
-            //    """
+            mail subject: 'Jenkins build error', 
+                to: 'jenkins@hevangel.com', 
+                body: """
+                    Job: ${env.JOB_NAME}\n Build: ${env.BUILD_NUMBER}\n URL: ${env.BUILD_URL}\n
+                """
         }
         cleanup {
             echo 'clean up at the end'
