@@ -16,8 +16,8 @@ pipeline {
         string(name: 'SleepDelay', defaultValue: '3', description: 'Sleep delay inside timeout')
         string(name: 'shCmd', defaultValue: 'false', description: 'sh command to run')
         // Matrix Stage parameters
-        booleanParam(name: 'RunMatrixStage', defaultValue: false, description: 'Run Matrix Stage')
-
+        booleanParam(name: 'RunMatrixStage', defaultValue: true, description: 'Run Matrix Stage')
+        // Misc
         choice(name: 'choice', choices: ['one','two','three'], description: '')
         password(name: 'password', defaultValue: 'SECRET', description: '')
         text(name: 'text', defaultValue: 'One\nTwo\nThree\n', description: '')
