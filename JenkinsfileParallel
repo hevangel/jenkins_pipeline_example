@@ -71,10 +71,14 @@ pipeline {
                 }
                 stages {
                     stage('One') {
-                        echo 'stage 1'
+                        steps {
+                            echo "$PLATFORM - stage 1"
+                        }
                     }
                     stage('Two') {
-                        echo 'stage 2'
+                        steps {
+                            echo "$PLATFORM - stage 2"
+                        }
                     }
                 }
             }
