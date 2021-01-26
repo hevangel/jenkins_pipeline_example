@@ -5,11 +5,11 @@
  - Generate a fake Junit test result
  - Push the artifact into github
 2. Use parallel agent (JenkinfileParallel)
- - [ ] static
- - [ ] fail first
- - [ ] matrix
- - [ ] dynamic loop list
- - [ ] control flow
+ - static
+ - fail first
+ - matrix
+ - control flow (when)
+ - stash/unstash
 3. Docker integration (JenkinfileDocker)
  - [ ] node
  - [ ] stage

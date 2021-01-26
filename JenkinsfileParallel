@@ -13,6 +13,8 @@ pipeline {
         string(name: 'shCmd', defaultValue: 'true', description: 'sh command to run')
         // Matrix Stage parameters
         booleanParam(name: 'RunMatrixStage', defaultValue: false, description: 'Run Matrix Stage')
+        // Stash Stage parameters
+        booleanParam(name: 'RunStashStage', defaultValue: false, description: 'Run Stash Stage')
         // Misc
         choice(name: 'choice', choices: ['one','two','three'], description: '')
         password(name: 'password', defaultValue: 'SECRET', description: '')
@@ -28,6 +30,7 @@ pipeline {
             parallel {
                 stage("One") {
                     agent any
+                    // run on a new agent
                     steps {
                         echo "${NODE_NAME}"
                         sleep 1
@@ -84,5 +87,42 @@ pipeline {
                 }
             }
         }
-     }
+        // --------------------------------------------------------------------
+        stage("StashOne") {
+            when {
+                expression {return params.RunStashStage}
+            }
+            steps {
+                echo "node $NODE_NAME"
+                writeFile file: "a.txt", text: "${NODE_NAME}"
+                sh "ls"
+                stash includes: "a.txt", name: 'stash_one'
+            }
+        }
+        stage ("StashTwo") {
+            when {
+                expression {return params.RunStashStage}
+            }
+            agent any
+            steps {
+                echo "node $NODE_NAME"
+                sh "ls"
+                unstash 'stash_one'
+                sh "ls"
+                writeFile file: "b.txt", text: "${NODE_NAME}"
+                stash includes: "b.txt", name: 'stash_one'
+            }
+        }
+        stage("StashThree") {
+            when {
+                expression {return params.RunStashStage}
+            }
+            steps {
+                echo "node $NODE_NAME"
+                sh "ls"
+                unstash 'stash_one'
+                sh "ls"
+            }
+        }
+    }
 }
