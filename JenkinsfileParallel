@@ -59,9 +59,9 @@ pipeline {
         }
         // --------------------------------------------------------------------
         stage("Matrix") {
-            when {
-                expression {return params.RunMatrixStage}
-            }
+            //when {
+            //    expression {return params.RunMatrixStage}
+            //}
             matrix {
                 axes {
                     axis {
