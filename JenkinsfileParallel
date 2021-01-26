@@ -1,10 +1,5 @@
 pipeline {
-    agent none
-    // agent {
-    //     node {
-    //         label 'ubuntu20.04'
-    //     }
-    // }
+    agent any
     // triggers { upstream(upstreamProjects: 'jenkins_pipeline_example', threshold: hudson.model.Result.SUCCESS) }
     options {
         timestamps()
@@ -13,11 +8,11 @@ pipeline {
     }
     parameters {
         // Parallel Stage parameters
-        booleanParam(name: 'RunParallelStage', defaultValue: true, description: 'Run Parallel Stage')
+        booleanParam(name: 'RunParallelStage', defaultValue: false, description: 'Run Parallel Stage')
         string(name: 'SleepDelay', defaultValue: '1', description: 'Sleep delay inside timeout')
         string(name: 'shCmd', defaultValue: 'true', description: 'sh command to run')
         // Matrix Stage parameters
-        booleanParam(name: 'RunMatrixStage', defaultValue: true, description: 'Run Matrix Stage')
+        booleanParam(name: 'RunMatrixStage', defaultValue: false, description: 'Run Matrix Stage')
         // Misc
         choice(name: 'choice', choices: ['one','two','three'], description: '')
         password(name: 'password', defaultValue: 'SECRET', description: '')
@@ -32,11 +27,10 @@ pipeline {
             failFast true
             parallel {
                 stage("One") {
+                    agent none
                     steps {
                         sleep 1
                         echo 'Stage 1'
-                        sh 'whoami'
-                        sh 'pwd'
                     }
                 }
                 stage("Two") {
