@@ -111,8 +111,9 @@ pipeline {
                 sh "ls"
                 unstash 'stash_one'
                 sh "ls"
-                writeFile file: "a.tmp", text: "${NODE_NAME}"
-                stash includes: "b.tmp", name: 'stash_one'
+                sh "echo 2 >> a.tmp"
+                writeFile file: "b.tmp", text: "${NODE_NAME}"
+                stash includes: "*.tmp", name: 'stash_two'
             }
         }
         stage("StashThree") {
@@ -123,8 +124,11 @@ pipeline {
                 echo "node $NODE_NAME"
                 sh "rm -f *.tmp"
                 sh "ls"
-                unstash 'stash_one'
+                unstash 'stash_two'
                 sh "ls"
+                sh "cat a.tmp"
+                unstash 'stash_one'
+                sh "cat a.tmp"
             }
         }
     }
