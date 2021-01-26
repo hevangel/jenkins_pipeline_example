@@ -27,7 +27,7 @@ pipeline {
             failFast true
             parallel {
                 stage("One") {
-                    agent none
+                    agent any
                     steps {
                         echo "${NODE_NAME}"
                         sleep 1
