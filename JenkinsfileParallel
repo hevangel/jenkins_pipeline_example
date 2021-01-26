@@ -24,8 +24,7 @@ pipeline {
                     steps {
                         sleep 1
                         echo 'Stage 1'
-
-                        echo "Paramaters: ${params.bool} ${param.string} ${param.choice} ${param.password} ${param.text}"
+                        // echo "Paramaters: ${params.bool} ${param.string} ${param.choice} ${param.password} ${param.text}"
                     }
                 }
                 stage("Two") {
@@ -33,7 +32,7 @@ pipeline {
                         timeout(time: 2, unit: 'SECONDS')
                     }
                     steps {
-                        sleep 3
+                        sleep 1
                         echo 'Stage 2'
                     }
                 }
