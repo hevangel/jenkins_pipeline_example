@@ -1,8 +1,10 @@
 pipeline {
     agent {
         node {
-            label 'linux'
-            customWorkspace "${env.HOME}/workspace/jenkins_pipeline_example"
+            label 'ubuntu'
+
+            // Use custom workspace
+            // customWorkspace "${env.HOME}/workspace/jenkins_pipeline_example"
         }
     }
     // periodic trigger
@@ -16,19 +18,15 @@ pipeline {
         stage('build') {
             steps {
                 // checkout git repo
-                dir('../git_example') {
+                dir('git_example') {
                     git url: 'git@github.com:hevangel-com/git_example.git', credentialsId: 'git-hevangel'
                 }
                 sh 'env'
+
                 // create python virtual environment
                 sh 'python3 -m venv --system-site-packages venv'
                 withPythonEnv("${WORKSPACE}/venv/") {
                     sh 'pip3 install -r requirements.txt'
-                    sh 'python3 dummy_test.py'
-                }
-                dir('../git_example') {
-                    sh 'touch a.txt'
-                    sh 'date >> a.txt'
                 }
             }
         }
@@ -42,15 +40,40 @@ pipeline {
                 sh 'echo "SSH private key is located at $SSH_CREDS"'
                 sh 'echo "SSH user is $SSH_CREDS_USR"'
                 sh 'echo "SSH passphrase is $SSH_CREDS_PSW"'
+
+                // run dummy test
+                withPythonEnv("${WORKSPACE}/venv/") {
+                    sh 'python3 dummy_test.py'
+                }
+                stash includes: 'test_result.xml', name: 'juint'
+
+                // create HTML report 
+                sh "sed 's/BUILD_ID/${BUILD_ID}/' report_template.html"
+        
+                // add a line to the 
+                dir('git_example') {
+                    sh 'touch jenkins_runs.txt'
+                    sh 'date >> jenkins_runs.txt'
+                }
             }
         }
         stage('archive') {
             steps {
                 echo 'archive phase'
                 junit allowEmptyResults: true, testResults: 'test_results.xml'
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
-                dir('../git_example') {
-                    archiveArtifacts 'a.txt'
+
+                publishHTML target: [
+                    allowMissing: false, 
+                    alwaysLinkToLastBuild: True, 
+                    keepAll: false, 
+                    reportDir: '', 
+                    reportFiles: 'test_report.html', 
+                    reportName: 'HTML Report Name', 
+                    reportTitles: 'HTML Report Title'
+                ]
+
+                dir('git_example') {
+                    archiveArtifacts 'jenkins_runs.txt'
                 }
             }
         }
@@ -59,7 +82,7 @@ pipeline {
             when {not {triggeredBy cause: 'GitHubPushCause'}}
             steps {
                 echo 'deploy phase'
-                dir('../git_example') {
+                dir('git_example') {
                     sh 'git add -A'
                     sh 'git commit -am "check in"'
                     sshagent (['git-hevangel']) {

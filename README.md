@@ -1,17 +1,17 @@
 # Jenkins Pipeline Example
 
-1. Basic Jenkins and github integration.  
+1. Basic Jenkins and github integration. (Jenkinsfile)
  - Create a multiple stages pipeline 
  - Generate a fake Junit test result
  - Push the artifact into github
-1. Object Storage integration
+2. Object Storage integration (JenkinsfileObjectStorage)
  - [ ] trigger by the first job
  - [ ] push into S3
  - [ ] push into Google Storage
-1. Docker integration
+3. Docker integration (JenkinfileDocker)
  - [ ] node
  - [ ] stage
-1. Use parallel agent
+4. Use parallel agent
 
 ## Ubuntu master install
 ```bash
@@ -60,9 +60,11 @@ sudo firewall-cmd --zone=public --permanent --add-port=8080/tcp
 sudo firewall-cmd --reload
 ```
 ## Ubuntu slave install
+```bash
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install openjdk-11-jre-headless docker iputils-ping net-tools
+```
 
 ## Install Plug-ins
 - Build Timestamp
