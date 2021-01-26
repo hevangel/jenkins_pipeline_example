@@ -12,18 +12,12 @@ pipeline {
     //}
     stages {
         stage("One") {
-            options {
-                timestamps()
-            }
             steps {
                 sleep 1
                 echo 'Stage 1'
             }
         }
         stage("Two") {
-            options {
-                timeout(time: 2, unit: 'SECONDS')
-            }
             steps {
                 sleep 3
                 echo 'Stage 2'
