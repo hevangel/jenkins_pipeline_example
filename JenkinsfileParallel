@@ -4,7 +4,6 @@ pipeline {
     // parameters {
     //    booleanParam(name: 'PUSH', defaultValue: false, description: 'Push to github')
     // }
-    timeout(unit: 'SECONDS', time: 5) {
         stages {
             stage("One") {
                     sleep 10
@@ -12,5 +11,5 @@ pipeline {
                 }
             }
         }
-    }
+    
 }
