@@ -78,7 +78,7 @@ pipeline {
                     stage('One') {
                         steps {
                             sleep 1
-                            echo "$PLATFORM $BROWSER - stage 1"
+                            echo "$PLATFORM - stage 1"
                         }
                     }
                 }
