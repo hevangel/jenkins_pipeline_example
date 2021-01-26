@@ -69,13 +69,15 @@ pipeline {
                 }
 
                 // catch error
-                try {
-                    sh 'false'
-                    echo 'succeeded'
-                } catch (err) {
-                    echo "failed: ${err}"
-                } finally {
-                    echo 'finally'
+                script {
+                    try {
+                        sh 'false'
+                        echo 'succeeded'
+                    } catch (err) {
+                        echo "failed: ${err}"
+                    } finally {
+                        echo 'finally'
+                    }
                 }
             }
         }
