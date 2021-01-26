@@ -64,7 +64,7 @@ pipeline {
         stage('archive') {
             steps {
                 echo '=== Archive Phase ==='
-                // junit allowEmptyResults: true, testResults: 'test_results.xml'
+                junit allowEmptyResults: true, testResults: 'test_results.xml'
 
                 /*
                 publishHTML target: [
