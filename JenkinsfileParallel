@@ -94,7 +94,7 @@ pipeline {
             }
             steps {
                 echo "node $NODE_NAME"
-                sh "rm *.tmp"
+                sh "rm -f *.tmp"
                 writeFile file: "a.tmp", text: "${NODE_NAME}"
                 sh "ls *.tmp"
                 stash includes: "a.tmp", name: 'stash_one'
@@ -107,7 +107,7 @@ pipeline {
             agent any
             steps {
                 echo "node $NODE_NAME"
-                sh "rm *.tmp"
+                sh "rm -f *.tmp"
                 sh "ls"
                 unstash 'stash_one'
                 sh "ls"
@@ -121,7 +121,7 @@ pipeline {
             }
             steps {
                 echo "node $NODE_NAME"
-                sh "rm *.tmp"
+                sh "rm -f *.tmp"
                 sh "ls"
                 unstash 'stash_one'
                 sh "ls"
