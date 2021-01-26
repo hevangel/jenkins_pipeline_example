@@ -71,7 +71,7 @@ pipeline {
                 axes {
                     axis {
                         name 'PLATFORM'
-                        values 'ubuntu20.04', 'ubuntu', 'centos7'
+                        values 'ubuntu20.04', 'ubuntu'
                     }
                 }
                 stages {
