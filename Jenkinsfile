@@ -49,7 +49,7 @@ pipeline {
                 withPythonEnv("${WORKSPACE}/venv/") {
                     sh 'python3 dummy_test.py'
                 }
-                // stash includes: 'test_results.xml', name: 'juint'
+                stash includes: 'test_results.xml', name: 'juint'
 
                 // create HTML report 
                 sh "sed 's/BUILD_ID/${BUILD_ID}/' report_template.html > test_report.html"
