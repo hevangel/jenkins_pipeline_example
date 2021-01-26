@@ -19,6 +19,7 @@ pipeline {
     }
     stages {
         stage("Parallel") {
+            failFast true
             parallel {
                 stage("One") {
                     steps {
