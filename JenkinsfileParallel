@@ -4,13 +4,18 @@ pipeline {
             label 'master'
         }
     }
+    triggers { upstream(upstreamProjects: 'jenkins_pipeline_example', threshold: hudson.model.Result.SUCCESS) }
     options {
         disableConcurrentBuilds()
         timeout(time: 10, unit: 'SECONDS')
     }
     // parameters {
-    //    booleanParam(name: 'sleep_time', defaultValue: false, description: 'sleep time')
-    //}
+    //    booleanParam(name: 'bool', defaultValue: false, description: '')
+    //    string(name: 'string', defaultValue: 'hello', description: '')
+    //    text(name: 'text', defaultValue: 'One\nTwo\nThree\n', description: '')
+    //    choice(name: 'choice', choices: ['one','two','three'], description: '')
+    //    password(name: 'password', defaultValue: 'SECRET', description: '')
+    // }
     stages {
         stage("One") {
             options {
@@ -19,6 +24,8 @@ pipeline {
             steps {
                 sleep 1
                 echo 'Stage 1'
+
+                // echo "${params.bool}"
             }
         }
         stage("Two") {
