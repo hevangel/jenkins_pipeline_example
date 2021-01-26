@@ -1,10 +1,10 @@
 pipeline {
     agent any 
     options {
-        timeout time: 5, unit: 'SECONDS'
+        timeout(time: 5, unit: 'SECONDS')
     }
     parameters {
-        booleanParam name: 'sleep_time', defaultValue: 10, description: 'sleep time'
+        booleanParam(name: 'sleep_time', defaultValue: 10, description: 'sleep time')
     }
     stages {
         stage("One") {
