@@ -17,33 +17,35 @@ pipeline {
         text(name: 'text', defaultValue: 'One\nTwo\nThree\n', description: '')
     }
     stages {
-        stage("One") {
-            options {
-                timestamps()
-            }
-            steps {
-                sleep 1
-                echo 'Stage 1'
+        parallel {
+            stage("One") {
+                options {
+                    timestamps()
+                }
+                steps {
+                    sleep 1
+                    echo 'Stage 1'
 
-                echo "Paramaters: ${params.bool} ${param.string} ${param.choice} ${param.password} ${param.text}"
+                    echo "Paramaters: ${params.bool} ${param.string} ${param.choice} ${param.password} ${param.text}"
+                }
             }
-        }
-        stage("Two") {
-            options {
-                timeout(time: 2, unit: 'SECONDS')
+            stage("Two") {
+                options {
+                    timeout(time: 2, unit: 'SECONDS')
+                }
+                steps {
+                    sleep 3
+                    echo 'Stage 2'
+                }
             }
-            steps {
-                sleep 3
-                echo 'Stage 2'
-            }
-        }
-        stage("Three") {
-            options {
-                retry(2)
-            }
-            steps {
-                echo 'Stage 3'
-                sh 'false'
+            stage("Three") {
+                options {
+                    retry(2)
+                }
+                steps {
+                    echo 'Stage 3'
+                    sh 'false'
+                }
             }
         }
     }
