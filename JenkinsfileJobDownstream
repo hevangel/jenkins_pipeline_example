@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    triggers { 
+        upstream(upstreamProjects: 'jenkins_pipeline_example_upstream, jenkins_pipeline_example_parallel', 
+                threshold: hudson.model.Result.SUCCESS) 
+    }
     stages {
         stage("Downstream") {
             steps {
