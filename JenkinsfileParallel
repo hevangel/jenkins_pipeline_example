@@ -35,6 +35,7 @@ pipeline {
                         echo "${NODE_NAME}"
                         sleep 1
                         echo 'Stage 1'
+                        stash name : 'foo', includes: '*.txt'
                     }
                 }
                 stage("Two") {
@@ -46,6 +47,7 @@ pipeline {
                         // Use integer parameter
                         sleep params.SleepDelay.toInteger()
                         echo 'Stage 2'
+                        stash name : 'foo', includes: '*.txt'
                     }
                 }
                 stage("Three") {
@@ -127,6 +129,7 @@ pipeline {
                 unstash 'stash_two'
                 sh "ls"
                 sh "cat a.tmp"
+                // overwrite
                 unstash 'stash_one'
                 sh "cat a.tmp"
             }
