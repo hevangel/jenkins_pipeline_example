@@ -1,23 +1,38 @@
 pipeline {
     agent any
+    options {
+        disableConcurrentBuilds()
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+        checkoutToSubdirectory('JobUpstream')
+    }
     parameters {
         // Parallel Stage parameters
-        booleanParam(name: 'BuildDownstream', defaultValue: false, description: 'Trigger build downstream')
+        booleanParam(name: 'BuildDownstream', defaultValue: true, description: 'Trigger build downstream')
         booleanParam(name: 'BuildJobWait', defaultValue: true, description: 'build job wait')
     }
     stages {
         stage("Upstream") {
             steps {
-                echo "${BUILD_TAG}"
+                sh 'pwd'
+                sh 'ls'
+                sh "echo '${BUILD_TAG}' > upstream_artifact.txt"
+                sh 'cd ..'
+                sh 'pwd'
             }
         }
-        stage("BuildDownstream") {
+        stage("CallDownstream") {
             when {
                 expression {return params.BuildDownstream}
             }
             steps {
-                build job : 'jenkins_pipeline_example_downstream', wait : params.BuildJobWait
+                build job : 'downstream_call', wait : params.BuildJobWait
             }
+        }
+    }
+    post {
+        // clean up workspace
+        always  {
+            deleteDir()
         }
     }
 }
