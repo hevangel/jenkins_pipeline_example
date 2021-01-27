@@ -2,8 +2,8 @@ pipeline {
     agent any
     stages {
         stage("Downstream") {
-            println('hello world')
             steps {
+                println('hello world')
                 echo "${BUILD_TAG}"
             }
         }
