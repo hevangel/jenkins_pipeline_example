@@ -140,14 +140,14 @@ pipeline {
                     agent any
                     steps {
                         sh "echo '4a' > c.tmp"
-                        stash includes: "c.tmp", name: 'foo'
+                        stash includes: "c.tmp", name: 'stash_four'
                     }
                 }
                 stage("4b") {
                     agent any
                     steps {
-                        sh "echo '4b' > c.tmp"
-                        stash includes: "d.tmp", name: 'foo2'
+                        sh "echo '4b' > d.tmp"
+                        stash includes: "d.tmp", name: 'stash_four2'
                     }
                 }
             } 
@@ -158,8 +158,8 @@ pipeline {
             }
             steps {
                 sh "rm -f *.tmp"
-                unstash 'foo'
-                unstash 'foo2'
+                unstash 'stash_four'
+                unstash 'stash_four2'
                 sh "ls *.tmp"
             }
          }
