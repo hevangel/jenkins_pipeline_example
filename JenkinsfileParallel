@@ -108,7 +108,6 @@ pipeline {
             steps {
                 echo "node $NODE_NAME"
                 sh "rm -f *.tmp"
-                sh "ls *.tmp"
                 unstash 'stash_one'
                 sh "ls *.tmp"
                 sh "echo 2 >> a.tmp"
@@ -123,7 +122,6 @@ pipeline {
             steps {
                 echo "node $NODE_NAME"
                 sh "rm -f *.tmp"
-                sh "ls *.tmp"
                 unstash 'stash_two'
                 sh "ls *.tmp"
                 sh "cat a.tmp"
