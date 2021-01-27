@@ -14,11 +14,9 @@
  - [x] trigger by the upstream job
  - [x] call by the upstream job
  - [ ] use upstream artifact
- - [ ] push artifact into S3
- - [ ] push artifact into Google Storage
 4. Docker integration (JenkinfileDocker)
- - [ ] node
- - [ ] stage
+ - [ ] use docker agent
+ - [ ] publish docker image
 
 ## Ubuntu master install
 ```bash
