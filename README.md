@@ -10,13 +10,14 @@
  - matrix
  - control flow (when)
  - stash/unstash
-3. Docker integration (JenkinfileDocker)
+3. Job trigger (JenkinfileJobTrigger)
+ - [ ] trigger by the upstream job
+ - [ ] use upstream artifact
+ - [ ] push artifact into S3
+ - [ ] push artifact into Google Storage
+4. Docker integration (JenkinfileDocker)
  - [ ] node
  - [ ] stage
-4. Object Storage integration (JenkinsfileObjectStorage)
- - [ ] trigger by the first job
- - [ ] push into S3
- - [ ] push into Google Storage
 
 ## Ubuntu master install
 ```bash

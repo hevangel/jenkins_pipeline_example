@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+    stages {
+        stage("Upstream") {
+            steps {
+                echo "${BUILD_TAG}"
+                build job : 'jenkins_pipeline_example_downstream', wait : false
+                sleep 10
+            }
+        }
+        stage("Downstream") {
+            steps {
+                echo "${BUILD_TAG}"
+            }
+        }
+    }
+}
