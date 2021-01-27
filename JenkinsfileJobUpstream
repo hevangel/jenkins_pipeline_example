@@ -18,7 +18,8 @@ pipeline {
                 archiveArtifacts artifacts: 'upstream_artifact.txt', fingerprint: true
 
                 sh "echo ${BUILD_TAG} > upstream_artifact_aws.txt"
-                s3Upload profileName: 'AWS S3', entries [[sourceFile:'upstream_artifact_aws.txt', bucket: 'jenkins']]
+                // Use publisher plugin
+                s3Upload profileName: 'AWS S3', entries: [[sourceFile:'upstream_artifact_aws.txt', bucket: 'jenkins']]
             }
         }
         stage("CallDownstream") {
