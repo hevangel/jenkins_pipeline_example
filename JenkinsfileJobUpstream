@@ -13,8 +13,8 @@ pipeline {
     stages {
         stage("Upstream") {
             steps {
-                sh 'touch upstream_artifact.txt'
-                // sh "echo '${BUILD_TAG}' > upstream_artifact.txt"
+                // sh 'touch upstream_artifact.txt'
+                sh "echo ${BUILD_TAG} > upstream_artifact.txt"
                 archiveArtifacts 'upstream_artifact.txt'
             }
         }
