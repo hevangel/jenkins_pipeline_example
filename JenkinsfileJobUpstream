@@ -23,7 +23,7 @@ pipeline {
                     checkout scm
                 }
                 sh "echo '${BUILD_TAG}' > upstream_artifact.txt"
-                archiveArtifacts upstream_artifact.txt, fingerprint true
+                archiveArtifacts artifacts: 'upstream_artifact.txt', fingerprint true
             }
         }
         stage("CallDownstream") {
