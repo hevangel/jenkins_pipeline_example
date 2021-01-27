@@ -16,6 +16,11 @@ pipeline {
                 // sh 'touch upstream_artifact.txt'
                 sh "echo ${BUILD_TAG} > upstream_artifact.txt"
                 archiveArtifacts artifacts: 'upstream_artifact.txt', fingerprint: true
+
+                sh "echo ${BUILD_TAG} > upstream_artifact_aws.txt"
+                withAWS(region: 'us-west-2') { 
+                    s3Upload(file:'upstream_artifact_aws.txt', bucket: 'jenkins')
+                }
             }
         }
         stage("CallDownstream") {

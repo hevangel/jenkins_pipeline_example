@@ -4,6 +4,7 @@ pipeline {
         stage("Downstream") {
             steps {
                 echo "${BUILD_TAG}"
+                // need to manual configure "Permission to Copy Artifact" in the upstream job
                 copyArtifacts projectName: 'upstream', selector: upstream()
                 sh "cat upstream_artifact.txt"
             }
