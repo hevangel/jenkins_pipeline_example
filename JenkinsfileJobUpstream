@@ -15,7 +15,7 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'ls'
-                dir 'JobUpstream' {
+                dir('JobUpstream') {
                     sh 'pwd'
                     sh 'ls'
                 }
