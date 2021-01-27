@@ -8,7 +8,7 @@ pipeline {
     parameters {
         // Parallel Stage parameters
         booleanParam(name: 'BuildDownstream', defaultValue: true, description: 'Trigger build downstream')
-        booleanParam(name: 'BuildJobWait', defaultValue: true, description: 'build job wait')
+        booleanParam(name: 'BuildJobWait', defaultValue: false, description: 'build job wait')
     }
     stages {
         stage("Upstream") {
@@ -23,6 +23,7 @@ pipeline {
                     checkout scm
                 }
                 sh "echo '${BUILD_TAG}' > upstream_artifact.txt"
+                archiveArtifacts upstream_artifact.txt, fingerprint true
             }
         }
         stage("CallDownstream") {

@@ -3,7 +3,6 @@ pipeline {
     stages {
         stage("Downstream") {
             steps {
-                println('hello world')
                 echo "${BUILD_TAG}"
             }
         }
