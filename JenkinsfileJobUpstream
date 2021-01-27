@@ -15,7 +15,9 @@ pipeline {
             steps {
                 sh 'touch upstream_artifact.txt'
                 // sh "echo '${BUILD_TAG}' > upstream_artifact.txt"
-                archiveArtifacts artifacts: 'upstream_artifact.txt', fingerprint true
+                step {
+                    archiveArtifacts 'upstream_artifact.txt'
+                }
             }
         }
         stage("CallDownstream") {
