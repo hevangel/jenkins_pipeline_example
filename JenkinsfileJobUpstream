@@ -13,16 +13,8 @@ pipeline {
     stages {
         stage("Upstream") {
             steps {
-                sh 'pwd'
-                sh 'ls'
-                dir('JobUpstream') {
-                    sh 'pwd'
-                    sh 'ls'
-                }
-                dir('temp') {
-                    checkout scm
-                }
-                sh "echo '${BUILD_TAG}' > upstream_artifact.txt"
+                sh 'touch upstream_artifact.txt'
+                // sh "echo '${BUILD_TAG}' > upstream_artifact.txt"
                 archiveArtifacts artifacts: 'upstream_artifact.txt', fingerprint true
             }
         }
