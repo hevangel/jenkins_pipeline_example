@@ -13,14 +13,15 @@ pipeline {
     stages {
         stage("Upstream") {
             steps {
-                echo pwd
+                sh 'pwd'
                 sh 'ls'
                 dir 'JobUpstream' {
-                    echo pwd
+                    sh 'pwd'
                     sh 'ls'
                 }
-                sh 'rm -rf'
-                checkout scm
+                dir 'temp' {
+                    checkout scm
+                }
                 sh "echo '${BUILD_TAG}' > upstream_artifact.txt"
             }
         }
