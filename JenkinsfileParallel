@@ -156,12 +156,12 @@ pipeline {
         stage("StashFive") {
             when {
                 expression {return params.RunStashStage}
-                steps {
-                    sh "rm -f *.tmp"
-                    sh "ls *.tmp"
-                    unstash 'foo'
-                    sh "ls *.tmp"
-                }
+            }
+            steps {
+                sh "rm -f *.tmp"
+                sh "ls *.tmp"
+                unstash 'foo'
+                sh "ls *.tmp"
             }
          }
     }
