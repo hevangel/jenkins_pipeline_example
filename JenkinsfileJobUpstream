@@ -19,7 +19,7 @@ pipeline {
                     sh 'pwd'
                     sh 'ls'
                 }
-                dir 'temp' {
+                dir('temp') {
                     checkout scm
                 }
                 sh "echo '${BUILD_TAG}' > upstream_artifact.txt"
