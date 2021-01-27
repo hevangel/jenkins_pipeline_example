@@ -9,7 +9,7 @@ pipeline {
                 sh "cat upstream_artifact.txt"
 
                 // use S3 publisher plugin
-                s3CopyArtifact buildSelector: lastCompleted(), excludeFilter: '', filter: 'upstream_artifact_aws.txt', flatten: false, optional: false, projectName: 'upstream', target: ''
+                s3CopyArtifact buildSelector: upstream(), filter: '', flatten: false, optional: true, projectName: 'upstream', target: ''
                 sh "cat upstream_artifact_aws.txt"
             }
         }
