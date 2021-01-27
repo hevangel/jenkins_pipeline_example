@@ -135,6 +135,7 @@ pipeline {
                 expression {return params.RunStashStage}
             }
             parallel {
+                // try stash/unstash in parallel stage
                 stage("4a") {
                     agent any
                     steps {
@@ -146,7 +147,7 @@ pipeline {
                     agent any
                     steps {
                         sh "echo '4b' > c.tmp"
-                        stash includes: "d.tmp", name: 'foo'
+                        stash includes: "d.tmp", name: 'foo2'
                     }
                 }
             } 
@@ -157,8 +158,8 @@ pipeline {
             }
             steps {
                 sh "rm -f *.tmp"
-                sh "ls *.tmp"
                 unstash 'foo'
+                unstash 'foo2'
                 sh "ls *.tmp"
             }
          }
