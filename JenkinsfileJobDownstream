@@ -10,5 +10,6 @@ pipeline {
                 echo "${BUILD_TAG}"
             }
         }
+        println('hello world')
     }
 }
