@@ -35,7 +35,6 @@ pipeline {
                         echo "${NODE_NAME}"
                         sleep 1
                         echo 'Stage 1'
-                        stash name : 'foo', includes: '*.txt'
                     }
                 }
                 stage("Two") {
@@ -47,7 +46,6 @@ pipeline {
                         // Use integer parameter
                         sleep params.SleepDelay.toInteger()
                         echo 'Stage 2'
-                        stash name : 'foo', includes: '*.txt'
                     }
                 }
                 stage("Three") {
@@ -110,9 +108,9 @@ pipeline {
             steps {
                 echo "node $NODE_NAME"
                 sh "rm -f *.tmp"
-                sh "ls"
+                sh "ls *.tmp"
                 unstash 'stash_one'
-                sh "ls"
+                sh "ls *.tmp"
                 sh "echo 2 >> a.tmp"
                 writeFile file: "b.tmp", text: "${NODE_NAME}"
                 stash includes: "*.tmp", name: 'stash_two'
@@ -125,14 +123,46 @@ pipeline {
             steps {
                 echo "node $NODE_NAME"
                 sh "rm -f *.tmp"
-                sh "ls"
+                sh "ls *.tmp"
                 unstash 'stash_two'
-                sh "ls"
+                sh "ls *.tmp"
                 sh "cat a.tmp"
                 // overwrite
                 unstash 'stash_one'
                 sh "cat a.tmp"
             }
         }
+        stage("StashFour") {
+            when {
+                expression {return params.RunStashStage}
+            }
+            parallel {
+                stage("4a") {
+                    agent any
+                    steps {
+                        sh "echo '4a' > c.tmp"
+                        stash includes: "c.tmp", name: 'foo'
+                    }
+                }
+                stage("4b") {
+                    agent any
+                    steps {
+                        sh "echo '4b' > c.tmp"
+                        stash includes: "d.tmp", name: 'foo'
+                    }
+                }
+            } 
+        }
+        stage("StashFive") {
+            when {
+                expression {return params.RunStashStage}
+                steps {
+                    sh "rm -f *.tmp"
+                    sh "ls *.tmp"
+                    unstash 'foo'
+                    sh "ls *.tmp"
+                }
+            }
+         }
     }
 }
