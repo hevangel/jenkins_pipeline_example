@@ -4,6 +4,8 @@ pipeline {
         stage("Downstream") {
             steps {
                 echo "${BUILD_TAG}"
+                copyArtifacts fingerprintArtifacts: true, projectName: 'upstream', selector: upstream()
+                sh "cat upstream_artifact.txt"
             }
         }
     }
