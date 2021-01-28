@@ -13,7 +13,8 @@
 3. Job trigger (JenkinfileJobTrigger)
  - [x] trigger by the upstream job
  - [x] call by the upstream job
- - [ ] use upstream artifact
+ - [x] use upstream artifact
+ - [x] publish artifact to AWS S3
 4. Docker integration (JenkinfileDocker)
  - [ ] use docker agent
  - [ ] publish docker image
