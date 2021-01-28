@@ -1,6 +1,9 @@
 pipeline {
     agent {
-        docker {image 'ubuntu:latest'}
+        node {
+            label 'master'
+            docker {image 'ubuntu:latest'}
+        }
     }
     stages {
         stage("Test") {
