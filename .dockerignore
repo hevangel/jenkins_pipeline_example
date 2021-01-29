@@ -1,0 +1,6 @@
+Jenkins*
+*.html
+*.md
+*.py
+*.txt
+!requirments.txt
