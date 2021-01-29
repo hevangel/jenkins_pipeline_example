@@ -1,14 +1,23 @@
 pipeline {
-    agent {
-        docker {
-            image 'ubuntu:latest'
-            args '-v $HOME/temp:/docker_temp'
-        }
-    }
+    agent none
     parameters {
         booleanParam(name: 'RunBuildStage', defaultValue: true, description: 'Run Build Stage')
     }
     stages {
+        stage("Test") {
+            agent {
+                docker {
+                    image 'ubuntu:latest'
+                    args '-v $HOME/temp:/docker_temp'
+                }
+            }
+            steps {
+                sh 'whoami'
+                sh 'pwd'
+                sh 'ls /docker_temp'
+                sh 'echo ${BUILD_TAG} > /docker_temp/build_tag.txt'
+            }
+        }
         stage("Build") {
             agent { dockerfile true }
             when {
@@ -17,13 +26,6 @@ pipeline {
             }
             steps {
                 sh 'python3 --version'
-            }
-        }
-        stage("Test") {
-            steps {
-                sh 'whoami'
-                sh 'pwd'
-                sh 'ls /docker_temp'
             }
         }
     }
