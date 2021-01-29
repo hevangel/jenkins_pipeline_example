@@ -21,7 +21,8 @@ pipeline {
         }
         stage("Test") {
             steps {
-                sh 'echo hello'
+                sh 'whoami'
+                sh 'pwd'
                 sh 'ls /docker_temp'
             }
         }
