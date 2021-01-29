@@ -18,13 +18,17 @@ pipeline {
             }
         }
         stage("Build") {
-            agent { dockerfile true }
+            agent { 
+                dockerfile {
+                    args '-t hevangel/jenkins_pipeline_example'
+                }
+            }
             when {
                 expression {return params.RunBuildStage}
                 beforeAgent true
             }
             steps {
-                sh 'python3 --version'
+                sh 'python3 dummy_test.py'
             }
         }
     }

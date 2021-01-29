@@ -11,7 +11,7 @@ LABEL description="Example Dockerfile"
 RUN apt update
 RUN apt install -y python3 python3-pip
 COPY requirements.txt /home
-RUN pip3 install -r /home/requirments.txt
+RUN pip3 install -r /home/requirements.txt
 
 # external mount point 
 VOLUME /work
