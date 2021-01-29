@@ -12,7 +12,6 @@ pipeline {
                 }
             }
             steps {
-                sh 'whoami'
                 sh 'pwd'
                 sh 'ls /docker_temp'
                 sh 'echo ${BUILD_TAG} > /docker_temp/build_tag.txt'
