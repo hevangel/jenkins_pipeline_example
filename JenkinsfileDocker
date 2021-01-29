@@ -9,19 +9,20 @@ pipeline {
         booleanParam(name: 'RunBuildStage', defaultValue: true, description: 'Run Build Stage')
     }
     stages {
-        stage("Build") {
-            agent { dockerfile true }
-            when {
-                expression {return params.RunBuildStage}
-                beforeAgenet true
-            }
-            steps {
-            }
-        }
         stage("Test") {
             steps {
                 sh 'echo hello'
                 sh 'ls /docker_temp'
+            }
+        }
+        stage("Build") {
+            agent { dockerfile true }
+            when {
+                expression {return params.RunBuildStage}
+                beforeAgent true
+            }
+            steps {
+                sh 'python3 --version'
             }
         }
     }

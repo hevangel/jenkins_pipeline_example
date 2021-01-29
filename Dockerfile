@@ -4,7 +4,6 @@ LABEL "com.example.vendor"="hevangel.com"
 LABEL version=1.0
 LABEL description="Example Dockerfile"
 
-
 # base image
 FROM ubuntu:20.04
 
