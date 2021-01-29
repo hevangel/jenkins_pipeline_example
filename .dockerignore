@@ -3,4 +3,4 @@ Jenkins*
 *.md
 *.py
 *.txt
-!requirments.txt
+!requirements.txt
