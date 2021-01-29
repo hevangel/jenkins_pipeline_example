@@ -8,6 +8,7 @@ LABEL version=1.0
 LABEL description="Example Dockerfile"
 
 # install python
+RUN apt update
 RUN apt install python3 python3-pip
 COPY requirements.txt /home
 RUN pip3 install -r /home/requirments.txt
