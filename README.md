@@ -16,8 +16,10 @@
  - [x] use upstream artifact
  - [x] publish artifact to AWS S3
 4. Docker integration (JenkinfileDocker)
- - [ ] use docker agent
- - [ ] publish docker image
+ - [ ] use docker in agent
+ - [ ] build from Dockerfile 
+ - [ ] publish docker image to docker hub
+ - [ ] publish docker image to AWS container registry
 
 ## Ubuntu master install
 ```bash
