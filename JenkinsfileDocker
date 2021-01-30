@@ -19,9 +19,7 @@ pipeline {
         }
         stage("Build") {
             agent { 
-                dockerfile {
-                    args '-t hevangel/jenkins_pipeline_example'
-                }
+                dockerfile true 
             }
             when {
                 expression {return params.RunBuildStage}
