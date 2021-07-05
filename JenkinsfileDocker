@@ -20,6 +20,7 @@ pipeline {
         stage("Build") {
             agent { 
                 dockerfile true 
+                args '-i --entrypoint='               
             }
             when {
                 expression {return params.RunBuildStage}
