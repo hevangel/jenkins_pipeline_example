@@ -61,9 +61,9 @@ sudo usermod -aG docker $USER
 ```
 
 ## Install Plug-ins
-- Build Timestamp
 - Blue Ocean
-- Pyenv
+- Pyenv Pipeline
 - SSH Agent
+- Build Timestamp
 - Monitoring
 - Dashboard View
