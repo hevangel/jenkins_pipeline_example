@@ -28,7 +28,7 @@ wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 sudo apt update
 sudo apt upgrade
-sudo apt install -y openjdk-11-jre-headless git
+sudo apt install -y openjdk-11-jre-headless iputils-ping net-tools git python3.8-venv
 sudo apt install -y jenkins
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
@@ -54,7 +54,7 @@ sudo iptables-save |sudo tee /etc/iptables/rules.v4
 ```bash
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install -y openjdk-11-jre-headless iputils-ping net-tools git
+sudo apt-get install -y openjdk-11-jre-headless iputils-ping net-tools git python3.8-venv
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo usermod -aG docker $USER
