@@ -28,7 +28,7 @@ wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 sudo apt update
 sudo apt upgrade
-sudo apt install -y openjdk-14-jre-headless git
+sudo apt install -y openjdk-11-jre-headless git
 sudo apt install -y jenkins
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
