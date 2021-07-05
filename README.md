@@ -1,23 +1,23 @@
 # Jenkins Pipeline Example
 
 1. Basic Jenkins and github integration. (Jenkinsfile)
- - Create a multiple stages pipeline 
- - Generate a fake Junit test result
- - Push the artifact into github
+ - [x] Create a multiple stages pipeline 
+ - [x] Generate a fake Junit test result
+ - [x] Push the artifact into github
 2. Use parallel agent (JenkinfileParallel)
- - static
- - fail first
- - matrix
- - control flow (when)
- - stash/unstash
+ - [x] static
+ - [x] fail first
+ - [x] matrix
+ - [x] control flow (when)
+ - [x] stash/unstash
 3. Job trigger (JenkinfileJobTrigger)
  - [x] trigger by the upstream job
  - [x] call by the upstream job
  - [x] use upstream artifact
  - [x] publish artifact to AWS S3
 4. Docker integration (JenkinfileDocker)
- - [ ] use docker in agent
- - [ ] build from Dockerfile 
+ - [x] use docker in agent
+ - [x] build from Dockerfile 
  - [ ] publish docker image to docker hub
  - [ ] publish docker image to AWS container registry
 
