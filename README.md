@@ -67,3 +67,5 @@ sudo usermod -aG docker $USER
 - Build Timestamp
 - Monitoring
 - Dashboard View
+- Docker Pipeline
+- Docker Slaves
