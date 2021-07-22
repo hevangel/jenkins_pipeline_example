@@ -3,8 +3,8 @@ pipeline {
     // triggers { upstream(upstreamProjects: 'jenkins_pipeline_example', threshold: hudson.model.Result.SUCCESS) }
     options {
         timestamps()
-        disableConcurrentBuilds()
-        timeout(time: 60, unit: 'SECONDS')
+        // disableConcurrentBuilds()
+        timeout(time: 600, unit: 'SECONDS')
     }
     parameters {
         // Parallel Stage parameters
@@ -14,7 +14,9 @@ pipeline {
         // Matrix Stage parameters
         booleanParam(name: 'RunMatrixStage', defaultValue: false, description: 'Run Matrix Stage')
         // Stash Stage parameters
-        booleanParam(name: 'RunStashStage', defaultValue: true, description: 'Run Stash Stage')
+        booleanParam(name: 'RunStashStage', defaultValue: false, description: 'Run Stash Stage')
+        // Lockh Stage parameters
+        booleanParam(name: 'RunLockStage', defaultValue: true, description: 'Run Lock Stage')
         // Misc
         choice(name: 'choice', choices: ['one','two','three'], description: '')
         password(name: 'password', defaultValue: 'SECRET', description: '')
@@ -163,12 +165,16 @@ pipeline {
                 sh "ls *.tmp"
             }
         }
-        stage("Deploy") {
+        stage("LockStage") {
             options {
-                lock('something')
+                lock('deploy')
+            }
+            when {
+                expression {return params.RunLockStage}
             }
             steps {
-                echo "deploy stage"
+                echo "inside lock stage"
+                sleep 60
             }
         }
     }
