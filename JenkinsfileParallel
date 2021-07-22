@@ -187,9 +187,7 @@ pipeline {
             steps {
                 echo "Pre milestone"
                 sleep params.SleepDelay.toInteger()
-            }
-            milestone()
-            steps {
+                milestone()
                 echo "Post milestone"
             }
         }
