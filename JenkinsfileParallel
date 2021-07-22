@@ -15,8 +15,10 @@ pipeline {
         booleanParam(name: 'RunMatrixStage', defaultValue: false, description: 'Run Matrix Stage')
         // Stash Stage parameters
         booleanParam(name: 'RunStashStage', defaultValue: false, description: 'Run Stash Stage')
-        // Lockh Stage parameters
-        booleanParam(name: 'RunLockStage', defaultValue: true, description: 'Run Lock Stage')
+        // Lock Stage parameters
+        booleanParam(name: 'RunLockStage', defaultValue: false, description: 'Run Lock Stage')
+        // Milestone Stage parameters
+        booleanParam(name: 'RunMilestoneStage', defaultValue: true, description: 'Run Milestone Stage')
         // Misc
         choice(name: 'choice', choices: ['one','two','three'], description: '')
         password(name: 'password', defaultValue: 'SECRET', description: '')
@@ -165,6 +167,7 @@ pipeline {
                 sh "ls *.tmp"
             }
         }
+        // --------------------------------------------------------------------
         stage("LockStage") {
             options {
                 lock('deploy')
@@ -175,6 +178,19 @@ pipeline {
             steps {
                 echo "inside lock stage"
                 sleep 60
+            }
+        }
+        stage("MilestoneStage") {
+            when {
+                expression {return params.RunMilestoneStage}
+            }
+            steps {
+                echo "Pre milestone"
+                sleep params.SleepDelay.toInteger()
+            }
+            milestone()
+            steps {
+                echo "Post milestone"
             }
         }
     }
