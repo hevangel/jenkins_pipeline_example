@@ -20,13 +20,6 @@ pipeline {
         password(name: 'password', defaultValue: 'SECRET', description: '')
         text(name: 'text', defaultValue: 'One\nTwo\nThree\n', description: '')
     }
-       echo "Staring"
-       lock("deploy") {
-          echo "inside lock"
-       }
-       echo "Finish"
-       
-    /*
     stages {
        // --------------------------------------------------------------------
        stage("Parallel") {
@@ -170,6 +163,13 @@ pipeline {
                 sh "ls *.tmp"
             }
         }
+        stage("Deploy") {
+            options {
+                lock('something')
+            }
+            steps {
+                echo "deploy stage"
+            }
+        }
     }
-*/
 }
