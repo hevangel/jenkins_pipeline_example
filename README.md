@@ -10,6 +10,8 @@
  - [x] matrix
  - [x] control flow (when)
  - [x] stash/unstash
+ - [ ] lock
+ - [ ] milestone
 3. Job trigger (JenkinfileJobTrigger)
  - [x] trigger by the upstream job
  - [x] call by the upstream job
