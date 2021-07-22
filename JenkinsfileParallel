@@ -21,6 +21,12 @@ pipeline {
         text(name: 'text', defaultValue: 'One\nTwo\nThree\n', description: '')
     }
     stages {
+       echo "Staring"
+       lock("deploy") {
+          echo "inside lock"
+       }
+       echo "Finish"
+       /*
        // --------------------------------------------------------------------
        stage("Parallel") {
             when {
@@ -162,6 +168,7 @@ pipeline {
                 unstash 'stash_four2'
                 sh "ls *.tmp"
             }
-         }
+        }
+    */
     }
 }
