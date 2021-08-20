@@ -10,7 +10,7 @@ pipeline {
         stage("Pull") {
             agent {
                 docker {
-                    image "hevangel/jenkins_pipeline_test:latest'
+                    image 'hevangel/jenkins_pipeline_test:latest'
                     args '-v $HOME/temp:/docker_temp'
                     // use the same node
                     reuseNode true
