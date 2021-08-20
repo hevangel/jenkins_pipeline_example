@@ -17,7 +17,7 @@ pipeline {
                 }
             }
             when {
-                expression {return params.RunBuildStage}
+                expression {return params.RunPullStage}
                 beforeAgent true
             }
             steps {
