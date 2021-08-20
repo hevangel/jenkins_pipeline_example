@@ -1,15 +1,24 @@
 pipeline {
     agent none
     parameters {
+        booleanParam(name: 'RunPullStage', defaultValue: true, description: 'Run Pull Stage')
         booleanParam(name: 'RunBuildStage', defaultValue: true, description: 'Run Build Stage')
+        booleanParam(name: 'RunPushStage', defaultValue: true, description: 'Run Push Stage')
     }
     stages {
-        stage("Test") {
+        // Pull image from docker register
+        stage("Pull") {
             agent {
                 docker {
                     image 'ubuntu:latest'
                     args '-v $HOME/temp:/docker_temp'
+                    // use the same node
+                    reuseNode true
                 }
+            }
+            when {
+                expression {return params.RunBuildStage}
+                beforeAgent true
             }
             steps {
                 sh 'pwd'
@@ -17,6 +26,7 @@ pipeline {
                 sh 'echo ${BUILD_TAG} > /docker_temp/build_tag.txt'
             }
         }
+        // Build image from docker file
         stage("Build") {
             agent { 
                 dockerfile {
@@ -31,5 +41,21 @@ pipeline {
                 sh 'python3 dummy_test.py'
             }
         }
+        // Build image from docker file
+        stage("Push") {
+            agent any 
+            when {
+                expression {return params.RunPushStage}
+                beforeAgent true
+            }
+            steps {
+                script {
+                    dockerImage = docker.build jenkins_pipeline_test
+                    dockerImage.push("$BUILD_NUMBER")
+                    dockerImage.push("latest")
+                }
+            }
+        }       
+        
     }
 }
