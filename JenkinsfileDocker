@@ -50,9 +50,9 @@ pipeline {
             }
             steps {
                 script {
-                    dockerImage = docker.build jenkins_pipeline_test
-                    dockerImage.push("$BUILD_NUMBER")
-                    dockerImage.push("latest")
+                    dockerImage = docker.build "jenkins_pipeline_test"
+                    dockerImage.push "$BUILD_NUMBER"
+                    dockerImage.push "latest"
                 }
             }
         }       
