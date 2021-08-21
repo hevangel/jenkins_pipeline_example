@@ -50,11 +50,9 @@ pipeline {
             }
             steps {
                 script {
-                    dockerImage = docker.build "jenkins_pipeline_test"
-                    docker.withRegistery('https://registry.hub.docker.com/') {
-                        dockerImage.push "$BUILD_NUMBER"
-                        dockerImage.push "latest"
-                    }
+                    dockerImage = docker.build "hevangel/jenkins_pipeline_test"
+                    dockerImage.push "$BUILD_NUMBER"
+                    dockerImage.push "latest"
                 }
             }
         }       
