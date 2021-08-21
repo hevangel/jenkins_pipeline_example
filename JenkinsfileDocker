@@ -1,8 +1,8 @@
 pipeline {
     agent none
     parameters {
-        booleanParam(name: 'RunPullStage', defaultValue: true, description: 'Run Pull Stage')
-        booleanParam(name: 'RunBuildStage', defaultValue: true, description: 'Run Build Stage')
+        booleanParam(name: 'RunPullStage', defaultValue: false, description: 'Run Pull Stage')
+        booleanParam(name: 'RunBuildStage', defaultValue: false, description: 'Run Build Stage')
         booleanParam(name: 'RunPushStage', defaultValue: true, description: 'Run Push Stage')
     }
     stages {
