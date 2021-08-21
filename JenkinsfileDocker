@@ -49,8 +49,8 @@ pipeline {
                 beforeAgent true
             }
             steps {
-                withDockerRegistry([credentialsId: 'docker', url: 'https://registry.hub.docker.com']) {
-                    script {
+                script {
+                    docker.withRegistry([credentialsId: 'docker', url: 'https://registry.hub.docker.com']) {
                         dockerImage = docker.build "hevangel/jenkins_pipeline_test"
                         dockerImage.push "$BUILD_NUMBER"
                         dockerImage.push "latest"
