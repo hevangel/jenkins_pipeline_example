@@ -12,7 +12,7 @@
  - [x] stash/unstash
  - [x] lock
  - [x] milestone
-3. Job trigger (JenkinfileJobTrigger)
+3. Job trigger (JenkinfileJobUpstream/JenkinsfileDownstream)
  - [x] trigger by the upstream job
  - [x] call by the upstream job
  - [x] use upstream artifact
