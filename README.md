@@ -10,8 +10,8 @@
  - [x] matrix
  - [x] control flow (when)
  - [x] stash/unstash
- - [ ] lock
- - [ ] milestone
+ - [x] lock
+ - [x] milestone
 3. Job trigger (JenkinfileJobTrigger)
  - [x] trigger by the upstream job
  - [x] call by the upstream job
@@ -20,8 +20,7 @@
 4. Docker integration (JenkinfileDocker)
  - [x] use docker in agent
  - [x] build from Dockerfile 
- - [ ] publish docker image to docker hub
- - [ ] publish docker image to AWS container registry
+ - [x] publish docker image to docker hub
 
 ## Ubuntu master install
 ```bash
