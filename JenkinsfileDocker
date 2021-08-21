@@ -51,7 +51,7 @@ pipeline {
             steps {
                 script {
                     dockerImage = docker.build "jenkins_pipeline_test"
-                    docker.withRegistery('https://index.docker.io/v1/', 'docker') {
+                    docker.withRegistery('https://registry.hub.docker.com/', 'docker') {
                         dockerImage.push "$BUILD_NUMBER"
                         dockerImage.push "latest"
                     }
