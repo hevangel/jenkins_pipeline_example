@@ -52,7 +52,7 @@ pipeline {
                 script {
                     String registry = 'https://registry.hub.docker.com'
                     String credential = 'docker' 
-                    docker.withRegistry(register, credential) {
+                    docker.withRegistry(registry, credential) {
                         dockerImage = docker.build "hevangel/jenkins_pipeline_test"
                         dockerImage.push "$BUILD_NUMBER"
                         dockerImage.push "latest"
