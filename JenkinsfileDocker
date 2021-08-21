@@ -41,7 +41,7 @@ pipeline {
                 sh 'python3 dummy_test.py'
             }
         }
-        // Build image from docker file
+        // Push to docker registry
         stage("Push") {
             agent any 
             when {
@@ -50,10 +50,7 @@ pipeline {
             }
             steps {
                 script {
-                    String registry = 'https://registry.hub.docker.com'
-                    String credential = 'docker' 
                     docker.withRegistry('https://registry.hub.docker.com', 'docker') {
-                    // docker.withRegistry(registry, credential) {
                         dockerImage = docker.build "hevangel/jenkins_pipeline_test"
                         dockerImage.push "$BUILD_NUMBER"
                         dockerImage.push "latest"
